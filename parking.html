@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>주차 등록 · 홈스테드 스테이</title>
+<link rel="stylesheet" href="app.css">
+<style>
+  .lot{display:flex; gap:6px; margin:14px 0 4px}
+  .lot .s{flex:1; text-align:center; padding:10px 4px; border:1px solid var(--line); border-radius:9px; font-size:12px; font-weight:700; background:#fdfcfa; color:var(--ink-soft)}
+  .lot .s.out{background:#fdf3e2; border-color:#f0dcba; color:#7a5410}
+  .lotcap{font-size:11.5px; color:var(--ink-soft); text-align:center; margin-bottom:14px}
+  table{width:100%; border-collapse:collapse; margin-top:6px}
+  th,td{padding:10px 6px; text-align:left; font-size:13.5px; border-bottom:1px solid var(--line)}
+  th{font-size:11.5px; color:var(--ink-soft); font-weight:700}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img class="logo" alt="홈스테드 스테이">
+    <div class="eyebrow">PARKING</div>
+    <h1 id="title">주차 등록</h1>
+    <p class="tagline">Together we are home</p>
+    <p class="lead">원활한 무료 주차를 위해 차량 정보를 등록해 주세요.</p>
+  </header>
+
+  <div class="guide">
+    <p><span class="gi">🚗</span><span>주차장은 좌우 빈틈 없는 <b>일렬 이중주차</b> 구조로, 중간 출차가 어렵습니다.</span></p>
+    <p><span class="gi">📞</span><span>차량에 <b>긴급 연락처를 꼭 부착</b>해 주세요.</span></p>
+    <p><span class="gi">↔️</span><span>통로 확보를 위해 <b>전면 주차</b> 부탁드립니다.</span></p>
+  </div>
+
+  <div class="lot">
+    <div class="s out">4번<br>먼저 출차</div><div class="s">3번</div><div class="s">2번</div><div class="s">1번<br>건물 쪽</div>
+  </div>
+  <div class="lotcap">← 도로 방향 · 일찍 나가실 분은 4번(바깥)에 주차해 주세요</div>
+
+  <div class="photos" id="photos"></div>
+
+  <div class="card">
+    <div id="editBanner" style="display:none; background:#fdf3e2; border:1px solid #f0dcba; color:#7a5410; border-radius:11px; padding:11px 14px; font-size:13px; font-weight:700; margin-bottom:14px">✏️ 수정 모드입니다. 내용을 바꾼 뒤 아래 버튼을 눌러주세요. <span id="editCancel" style="color:var(--pine); text-decoration:underline; cursor:pointer">취소</span></div>
+    <div class="field"><label for="checkin">체크인 날짜</label><input type="date" id="checkin"></div>
+    <div class="field"><label for="room">예약 객실</label>
+      <div class="selwrap"><select id="room"><option value="">선택해주세요</option></select></div></div>
+    <div class="field"><label for="plate">차량 번호</label><input type="text" id="plate" placeholder="예) 12가3456" autocomplete="off"></div>
+    <div class="field"><label for="phone">휴대폰 번호</label><input type="tel" id="phone" placeholder="010-0000-0000" inputmode="numeric"></div>
+    <div class="field"><label for="exit">예상 출차 시간</label><input type="time" id="exit"></div>
+    <div class="field" style="margin-bottom:20px"><label for="note">전달사항 <span style="font-weight:400; color:var(--ink-soft)">(선택)</span></label><input type="text" id="note" placeholder="예) 아침 일찍 나갑니다" autocomplete="off"></div>
+    <button class="btn btn-primary" id="registerBtn">등록하기</button>
+    <p style="font-size:11.5px; color:#9b2c2c; margin:12px 0 0; line-height:1.5">※ 입력하신 정보는 주차 관리 목적으로만 사용되며, 다른 손님께는 차량번호 일부가 가려진 상태로만 표시됩니다.</p>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:800; margin-bottom:12px">🔍 주차 현황 확인 · 수정 · 삭제</div>
+    <div class="field"><label for="viewDate">체크인 날짜</label><input type="date" id="viewDate"></div>
+    <div class="field" style="margin-bottom:16px"><label for="viewPlate">본인 차량 번호</label><input type="text" id="viewPlate" placeholder="본인 차량번호 전체" autocomplete="off"></div>
+    <button class="btn" id="viewBtn">현황 보기</button>
+    <button class="btn" id="editBtn" style="margin-top:10px">✏️ 내 등록 정보 수정</button>
+    <button class="btn btn-danger" id="delBtn" style="margin-top:10px">🗑️ 내 등록 삭제</button>
+    <div id="resultArea" style="display:none; margin-top:14px"></div>
+  </div>
+
+  <a class="btn callbtn" href="#" style="display:none">📞 숙소에 전화하기</a>
+  <a class="btn" id="blog" href="#" target="_blank" rel="noopener" style="display:none; margin-top:10px">🅿️ 다른 주차장 알아보기</a>
+  <a class="btn btn-primary" href="index.html" style="margin-top:10px">← 처음으로</a>
+  <footer id="footer">홈스테드 스테이</footer>
+</div>
+
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <h3>등록 내용을 확인해 주세요</h3>
+    <p id="modalBody" style="color:var(--ink)"></p>
+    <div class="modal-btns">
+      <button class="btn" id="mCancel">다시 확인</button>
+      <button class="btn btn-primary" id="mOk">등록하기</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-bg" id="fullModal">
+  <div class="modal">
+    <h3>금일 주차 등록이 마감되었습니다</h3>
+    <p>주차 가능 대수(4대)가 모두 채워졌습니다. 근처 공영주차장 이용을 부탁드립니다 🙏</p>
+    <div class="modal-btns">
+      <button class="btn" id="fCancel">닫기</button>
+      <a class="btn btn-primary" id="fBlog" href="#" target="_blank" rel="noopener" style="display:none">다른 주차장 알아보기</a>
+    </div>
+  </div>
+</div>
+
+<div class="modal-bg" id="delModal">
+  <div class="modal">
+    <h3>등록을 삭제하시겠어요?</h3>
+    <p>삭제하면 되돌릴 수 없습니다. 조회한 날짜·차량 번호의 등록이 삭제됩니다.</p>
+    <div class="modal-btns">
+      <button class="btn" id="dCancel">취소</button>
+      <button class="btn btn-primary" id="dOk" style="background:#9b2c2c; border-color:#9b2c2c">삭제하기</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+<script>
+  var editMode=false, editOrigPlate='';
+  document.getElementById('checkin').value = todayISO();
+  document.getElementById('viewDate').value = todayISO();
+
+  loadConfig(function(c){
+    if(c.placeName) document.getElementById('title').textContent = c.placeName + ' 주차등록';
+    fillSelect('room', c.rooms);
+    var box=document.getElementById('photos');
+    [c.photoUrl, c.photoUrl2].forEach(function(u){
+      if(!u || u.indexOf('http')!==0) return;
+      var im=document.createElement('img'); im.src=u; im.alt='주차 안내'; box.appendChild(im);
+    });
+    if(c.blogLink && c.blogLink.indexOf('http')===0 && c.blogLink.indexOf('여기에')===-1){
+      var b=document.getElementById('blog'); b.href=c.blogLink; b.style.display='flex';
+      var fb=document.getElementById('fBlog'); fb.href=c.blogLink; fb.style.display='flex';
+    }
+  });
+
+  function collect(){
+    return {
+      checkin: document.getElementById('checkin').value,
+      room: document.getElementById('room').value,
+      plate: document.getElementById('plate').value.trim(),
+      phone: document.getElementById('phone').value,
+      exitTime: document.getElementById('exit').value,
+      note: document.getElementById('note').value
+    };
+  }
+
+  function setEditMode(on){
+    editMode=on;
+    document.getElementById('editBanner').style.display = on?'block':'none';
+    document.getElementById('registerBtn').textContent = on?'수정 완료':'등록하기';
+    if(!on) editOrigPlate='';
+  }
+  document.getElementById('editCancel').addEventListener('click', function(){
+    setEditMode(false);
+    document.getElementById('plate').value=''; document.getElementById('phone').value=''; document.getElementById('note').value='';
+  });
+
+  function validate(d){
+    if(!d.checkin){ toast('체크인 날짜를 선택해주세요.'); return false; }
+    if(!d.room){ toast('객실을 선택해주세요.'); return false; }
+    if(!d.plate || d.plate.length<4){ toast('차량 번호를 정확히 입력해주세요.'); return false; }
+    if(d.phone.replace(/[^0-9]/g,'').length<10){ toast('휴대폰 번호를 정확히 입력해주세요.'); return false; }
+    if(!d.exitTime){ toast('예상 출차 시간을 입력해주세요.'); return false; }
+    return true;
+  }
+
+  document.getElementById('registerBtn').addEventListener('click', function(){
+    var d=collect(); if(!validate(d)) return;
+    if(editMode){
+      d.origPlate=editOrigPlate;
+      var rb=this; rb.disabled=true; rb.textContent='수정 중...';
+      api('updateParking', d).then(function(res){
+        rb.disabled=false; setEditMode(false); rb.textContent='등록하기';
+        if(res && res.ok){ toast(res.msg, 1); document.getElementById('viewDate').value=d.checkin; document.getElementById('viewPlate').value=d.plate; loadList(); }
+        else toast((res&&res.msg)||'수정에 실패했어요.');
+      }).catch(function(){ rb.disabled=false; rb.textContent='수정 완료'; toast('통신 오류가 발생했어요.'); });
+      return;
+    }
+    document.getElementById('modalBody').innerHTML =
+      d.checkin+' · '+d.room+'<br>차량 '+d.plate+'<br>출차 예정 '+d.exitTime;
+    document.getElementById('modal').className='modal-bg show';
+  });
+
+  document.getElementById('mCancel').addEventListener('click', function(){ document.getElementById('modal').className='modal-bg'; });
+  document.getElementById('fCancel').addEventListener('click', function(){ document.getElementById('fullModal').className='modal-bg'; });
+  document.getElementById('mOk').addEventListener('click', function(){
+    var d=collect(); var b=this; b.disabled=true; b.textContent='등록 중...';
+    api('registerParking', d).then(function(res){
+      b.disabled=false; b.textContent='등록하기'; document.getElementById('modal').className='modal-bg';
+      if(res && res.ok){
+        toast('✅ '+res.msg, 1);
+        document.getElementById('viewDate').value=d.checkin;
+        document.getElementById('viewPlate').value=d.plate;
+        loadList();
+      } else if(res && res.full){
+        document.getElementById('fullModal').className='modal-bg show';
+      } else if(res && res.dup){
+        toast(res.msg);
+        document.getElementById('viewDate').value=d.checkin;
+        document.getElementById('viewPlate').value=d.plate;
+      } else toast((res&&res.msg)||'등록에 실패했어요.');
+    }).catch(function(){ b.disabled=false; b.textContent='등록하기'; document.getElementById('modal').className='modal-bg'; toast('통신 오류가 발생했어요.'); });
+  });
+
+  function loadList(){
+    var date=document.getElementById('viewDate').value, plate=document.getElementById('viewPlate').value;
+    if(!date){ toast('조회할 체크인 날짜를 선택해주세요.'); return; }
+    if(!plate || plate.trim().length<4){ toast('본인 차량 번호를 입력해주세요.'); return; }
+    var area=document.getElementById('resultArea');
+    area.style.display='block'; area.innerHTML='<div style="text-align:center; padding:16px; color:var(--ink-soft); font-size:13px">조회 중...</div>';
+    api('getParkingList', { checkin:date, plate:plate }).then(function(res){
+      if(!res || !res.ok){ area.innerHTML='<div style="text-align:center; padding:14px; color:#9b2c2c; font-size:13px">'+((res&&res.msg)||'조회 실패')+'</div>'; return; }
+      var h='<div style="font-size:13px; font-weight:700; margin-bottom:6px">'+res.date+' · 총 '+res.count+'대</div>';
+      h+='<table><thead><tr><th>차량</th><th>출차 예정</th></tr></thead><tbody>';
+      res.list.forEach(function(r){
+        h+='<tr><td><b>'+r.plate+'</b>'+(r.note?'<br><span style="font-size:11.5px; color:var(--ink-soft)">📝 '+r.note+'</span>':'')+'</td><td>'+(r.exitTime||'미정')+'</td></tr>';
+      });
+      h+='</tbody></table>';
+      area.innerHTML=h;
+    }).catch(function(){ area.innerHTML='<div style="text-align:center; padding:14px; color:#9b2c2c; font-size:13px">통신 오류</div>'; });
+  }
+  document.getElementById('viewBtn').addEventListener('click', loadList);
+
+  document.getElementById('editBtn').addEventListener('click', function(){
+    var date=document.getElementById('viewDate').value, plate=document.getElementById('viewPlate').value;
+    if(!date){ toast('조회할 체크인 날짜를 선택해주세요.'); return; }
+    if(!plate || plate.trim().length<4){ toast('본인 차량 번호를 입력해주세요.'); return; }
+    var b=this; b.disabled=true; b.textContent='불러오는 중...';
+    api('findMyRegistration', { checkin:date, plate:plate }).then(function(res){
+      b.disabled=false; b.textContent='✏️ 내 등록 정보 수정';
+      if(!res || !res.ok){ toast((res&&res.msg)||'조회에 실패했어요.'); return; }
+      if(!res.found){ toast(res.msg||'등록 내역을 찾을 수 없어요.'); return; }
+      var d=res.data;
+      document.getElementById('checkin').value=date;
+      document.getElementById('room').value=d.room;
+      document.getElementById('plate').value=d.plate;
+      document.getElementById('phone').value=d.phone;
+      document.getElementById('exit').value=d.exitTime;
+      document.getElementById('note').value=d.note;
+      editOrigPlate=d.plate; setEditMode(true);
+      window.scrollTo({top:0, behavior:'smooth'});
+      toast('내 등록 정보를 불러왔어요. 수정 후 완료를 눌러주세요.', 1);
+    }).catch(function(){ b.disabled=false; b.textContent='✏️ 내 등록 정보 수정'; toast('통신 오류가 발생했어요.'); });
+  });
+
+  document.getElementById('delBtn').addEventListener('click', function(){
+    var date=document.getElementById('viewDate').value, plate=document.getElementById('viewPlate').value;
+    if(!date){ toast('조회할 체크인 날짜를 선택해주세요.'); return; }
+    if(!plate || plate.trim().length<4){ toast('본인 차량 번호를 입력해주세요.'); return; }
+    document.getElementById('delModal').className='modal-bg show';
+  });
+  document.getElementById('dCancel').addEventListener('click', function(){ document.getElementById('delModal').className='modal-bg'; });
+  document.getElementById('dOk').addEventListener('click', function(){
+    var date=document.getElementById('viewDate').value, plate=document.getElementById('viewPlate').value;
+    var b=this; b.disabled=true; b.textContent='삭제 중...';
+    api('deleteParking', { checkin:date, plate:plate }).then(function(res){
+      b.disabled=false; b.textContent='삭제하기'; document.getElementById('delModal').className='modal-bg';
+      if(res && res.ok){ toast('✅ '+res.msg, 1); document.getElementById('resultArea').style.display='none'; document.getElementById('viewPlate').value=''; }
+      else toast((res&&res.msg)||'삭제에 실패했어요.');
+    }).catch(function(){ b.disabled=false; b.textContent='삭제하기'; document.getElementById('delModal').className='modal-bg'; toast('통신 오류가 발생했어요.'); });
+  });
+</script>
+</body>
+</html>
