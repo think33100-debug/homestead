@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>이용 Tip · 홈스테드 스테이</title>
+<link rel="stylesheet" href="app.css">
+<style>
+  .acc{background:var(--card); border:1px solid var(--line); border-radius:14px; margin-bottom:10px; overflow:hidden}
+  .acc.open{border-color:var(--pine)}
+  .acch{display:flex; align-items:center; gap:14px; padding:17px 18px; cursor:pointer; width:100%; background:none; border:none; font-family:inherit; text-align:left; color:var(--ink)}
+  .acch .ae{width:42px; height:42px; flex:none; border-radius:12px; background:var(--paper); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; font-size:21px}
+  .acch .at{font-size:15.5px; font-weight:800}
+  .acch .ad{font-size:12.5px; color:var(--ink-soft); margin-top:2px}
+  .acch .av{color:var(--ink-soft); font-size:14px; transition:transform .2s}
+  .acc.open .acch .av{transform:rotate(180deg)}
+  .accb{display:none; padding:0 18px 18px; font-size:14px; line-height:1.7; word-break:keep-all}
+  .acc.open .accb{display:block}
+  .accb b{color:var(--pine)}
+  .accb img{width:100%; border-radius:12px; border:1px solid var(--line); margin:12px 0 4px; display:block}
+  .step{display:flex; gap:9px; margin-bottom:9px}
+  .step .n{flex:none; width:21px; height:21px; border-radius:50%; background:var(--pine); color:#fff; font-size:11.5px; font-weight:800; display:flex; align-items:center; justify-content:center; margin-top:2px}
+  .fcat{font-size:13px; font-weight:800; color:var(--pine); margin:16px 0 8px; padding-bottom:6px; border-bottom:1px solid var(--line)}
+  .fcat:first-child{margin-top:4px}
+  .food{display:block; padding:11px 0; border-bottom:1px dashed var(--line); text-decoration:none; color:var(--ink)}
+  .food:last-child{border-bottom:none}
+  .food .fn{font-size:14px; font-weight:800}
+  .food .fd{font-size:12.5px; color:var(--amber); font-weight:700; margin-top:1px}
+  .food .fx{font-size:12.5px; color:var(--ink-soft); margin-top:3px; line-height:1.55}
+  .food .fa{font-size:11.5px; color:var(--ink-soft); margin-top:3px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="langBar"></div>
+  <header>
+    <img class="logo" alt="홈스테드 스테이">
+    <div class="eyebrow">GUIDE</div>
+    <h1 data-i18n="tipTitle">홈스테드 이용 Tip</h1>
+    <p class="tagline">Together we are home</p>
+    <p class="lead" data-i18n="tipLead">머무시는 동안 알아두시면 좋은<br>소소한 안내를 모았습니다.</p>
+  </header>
+
+  <!-- 1. 도어락 -->
+  <div class="acc" id="a1">
+    <button class="acch" data-t="a1">
+      <div class="ae">🔒</div>
+      <div class="grow"><div class="at" data-i18n="tip1T">도어락 안심 잠금</div><div class="ad" data-i18n="tip1D">밖에서 절대 열 수 없게 잠그는 방법</div></div>
+      <div class="av">▾</div>
+    </button>
+    <div class="accb">
+      <p style="margin:0 0 10px">체인 걸쇠가 없어도 괜찮습니다. 버튼 하나로 더 확실하게 잠글 수 있어요.</p>
+      <div class="step"><div class="n">1</div><div>객실 문을 <b>완전히 닫아</b> 주세요.</div></div>
+      <div class="step"><div class="n">2</div><div>도어락 <b>안쪽의 OPEN / CLOSE 버튼</b>을 찾아주세요.</div></div>
+      <div class="step"><div class="n">3</div><div>그 버튼을 <b>3초간 길게</b> 눌러주세요.</div></div>
+      <p style="margin:12px 0 0">이 상태가 되면 <b>비밀번호나 카드키로도 밖에서 열 수 없습니다.</b> 안에서 문을 열면 자동으로 해제되니 편하게 쉬시면 됩니다.</p>
+      <img id="imgDoor" alt="도어락 안심 잠금 안내" style="display:none">
+      <p style="margin:12px 0 0; color:var(--ink-soft); font-size:13px">편안한 휴식은 안심에서 시작됩니다. 홈스테드에서 안전한 밤 보내세요 🌙</p>
+    </div>
+  </div>
+
+  <!-- 2. 세탁실 -->
+  <div class="acc" id="a2">
+    <button class="acch" data-t="a2">
+      <div class="ae">🧺</div>
+      <div class="grow"><div class="at" data-i18n="tip2T">세탁실 이용 방법</div><div class="ad" data-i18n="tip2D">세탁기 · 건조기 · 세제 위치</div></div>
+      <div class="av">▾</div>
+    </button>
+    <div class="accb">
+      <p style="margin:0 0 10px"><b>1층 다용도실</b>에 세탁기와 건조기가 준비되어 있습니다 ☺️</p>
+      <div class="step"><div class="n">1</div><div>세탁 세제는 <b>세탁기 위 사물함</b>을 위로 올려 열면 있습니다.</div></div>
+      <div class="step"><div class="n">2</div><div><b>세탁기를 먼저</b> 이용하시고, 이후에 건조기를 사용해 주세요.</div></div>
+      <p style="margin:12px 0 6px"><b>저희 수건이 돌아가고 있다면</b> 이렇게 부탁드려요 🙏</p>
+      <div class="step"><div class="n">·</div><div><b>건조가 끝난 수건</b> → 흰색 커튼 뒤 수건통에 넣어주세요.</div></div>
+      <div class="step"><div class="n">·</div><div><b>세탁만 끝난 수건</b> → 건조기에 넣고 돌려주세요.</div></div>
+      <img id="imgLaundry" alt="세탁실 안내" style="display:none">
+      <p style="margin:12px 0 0; color:var(--ink-soft); font-size:13px">번거로우실 텐데 함께 챙겨주셔서 늘 감사합니다 😊</p>
+    </div>
+  </div>
+
+  <!-- 3. 어메니티 -->
+  <div class="acc" id="a3">
+    <button class="acch" data-t="a3">
+      <div class="ae">🧴</div>
+      <div class="grow"><div class="at" data-i18n="tip3T">수건 · 어메니티 추가</div><div class="ad" data-i18n="tip3D">여분 물품이 있는 곳</div></div>
+      <div class="av">▾</div>
+    </button>
+    <div class="accb">
+      <p style="margin:0 0 10px">필요하신 물품 위치를 안내해 드릴게요! 🧴🧺</p>
+      <p style="margin:0 0 10px"><b>1층 다용도실 싱크대 제일 오른쪽 서랍</b> 안 라탄 상자를 열어보시면 여분의 <b>어메니티, 수건, 쓰레기 봉투, 충전기</b>가 준비되어 있습니다. 필요하신 만큼 편하게 사용해 주세요 😄</p>
+      <p style="margin:0">다 쓰신 수건은 <b>1층 커튼 뒤 수건함</b>에 쏙 넣어주시면 됩니다!</p>
+      <img id="imgAmenity" alt="어메니티 위치 안내" style="display:none">
+      <p style="margin:12px 0 0; color:var(--ink-soft); font-size:13px">머무시면서 더 필요한 물품이 있다면 언제든 편하게 알려주세요 😁</p>
+    </div>
+  </div>
+
+  <!-- 4. 맛집 -->
+  <div class="acc" id="a4">
+    <button class="acch" data-t="a4">
+      <div class="ae">🍴</div>
+      <div class="grow"><div class="at" data-i18n="tip4T">근처 맛집 & 편의시설</div><div class="ad" data-i18n="tip4D">호스트가 직접 추천하는 곳</div></div>
+      <div class="av">▾</div>
+    </button>
+    <div class="accb">
+      <p style="margin:0 0 4px">머무시는 동안 맛있는 식사를 하실 수 있도록, 숙소 근처 찐맛집과 편의시설을 모아봤어요 🏠✨</p>
+
+      <div class="fcat">📍 숙소 근처 (도보 · 차량)</div>
+      <a class="food" href="https://naver.me/xRPvV1co" target="_blank" rel="noopener">
+        <div class="fn">제주섭이네해장국 본점</div><div class="fd">🥘 24시간 · 해장 추천</div>
+        <div class="fx">걸어서 5분 거리예요. 돈가스보다는 선지가 들어간 해장국이 맛있습니다.</div>
+        <div class="fa">대구 동구 신암남로 164</div>
+      </a>
+      <a class="food" href="https://naver.me/x1gvkuKa" target="_blank" rel="noopener">
+        <div class="fn">윤정경대한곱창 본점</div><div class="fd">🍲 동네 찐맛집 · 곱창전골</div>
+        <div class="fx">매장은 조금 협소하지만 맛은 확실합니다. 뜨끈한 전골 생각나실 때 추천해요.</div>
+        <div class="fa">대구 동구 신암남로 175</div>
+      </a>
+      <a class="food" href="https://naver.me/xI2X0xzz" target="_blank" rel="noopener">
+        <div class="fn">신세계양꼬치</div><div class="fd">🍢 대구 1티어 양꼬치</div>
+        <div class="fx">웨이팅이 있을 수 있지만 그만큼 맛있는 곳입니다.</div>
+        <div class="fa">대구 동구 효신로5길 109</div>
+      </a>
+      <a class="food" href="https://naver.me/FvQiq0T0" target="_blank" rel="noopener">
+        <div class="fn">연막창 동대구역직영점</div><div class="fd">🔥 요즘 핫한 대구 막창</div>
+        <div class="fx">걸어가기엔 조금 거리가 있어 택시나 버스를 추천드려요.</div>
+        <div class="fa">대구 동구 동부로30길 25 1층</div>
+      </a>
+      <a class="food" href="https://naver.me/GlJTfeko" target="_blank" rel="noopener">
+        <div class="fn">산더미 미성돼지국밥 동대구역점</div><div class="fd">🍚 순대 무한리필 · 퇴실 후 추천</div>
+        <div class="fx">퇴실하고 든든하게 해장하기 딱 좋은 곳입니다.</div>
+        <div class="fa">대구 동구 동대구로 462</div>
+      </a>
+      <a class="food" href="https://naver.me/xejfudw6" target="_blank" rel="noopener">
+        <div class="fn">참치열전</div><div class="fd">🐟 참치 찜 맛집 · 예약 필수</div>
+        <div class="fx">테이크아웃도 가능합니다. 특별한 메뉴를 원하시면 사전 예약 후 방문해 보세요.</div>
+        <div class="fa">대구 동구 화랑로25길 3 D동 1층 7호</div>
+      </a>
+      <a class="food" href="https://naver.me/xgNAKsuc" target="_blank" rel="noopener">
+        <div class="fn">푸르파파 큰고개역점</div><div class="fd">☕ 모닝커피 · 가성비 카페</div>
+        <div class="fx">아침 8시 30분 오픈이라 일찍 움직이실 때 좋아요. 테이크아웃 전문입니다.</div>
+        <div class="fa">대구 동구 신암남로 146 1층 105호</div>
+      </a>
+
+      <div class="fcat">🛒 마트 & 편의점</div>
+      <a class="food" href="https://naver.me/xUtW4mzs" target="_blank" rel="noopener">
+        <div class="fn">CU 뉴대구신암타운점</div><div class="fd">🏪 가장 가까운 편의점</div>
+        <div class="fa">대구 동구 신암남로28길 45</div>
+      </a>
+      <a class="food" href="https://naver.me/Fgv1iMCC" target="_blank" rel="noopener">
+        <div class="fn">마트프라임</div><div class="fd">🍎 근처 대형 마트</div>
+        <div class="fx">편의점보다 저렴하게 장을 보실 수 있습니다.</div>
+        <div class="fa">대구 동구 동북로 430</div>
+      </a>
+
+      <div class="fcat">🏙️ 시내(동성로 · 교동) 추천</div>
+      <a class="food" href="https://naver.me/xWBk8OaT" target="_blank" rel="noopener">
+        <div class="fn">교동 네이바훗도</div><div class="fd">🏮 이자카야 · 분위기 맛집</div>
+        <div class="fx">일본식 선술집 분위기로 연인과 가기 좋아요. 명란 오믈렛이 정말 맛있습니다.</div>
+        <div class="fa">대구 중구 국채보상로 634 1층</div>
+      </a>
+      <a class="food" href="https://naver.me/xcJBAazs" target="_blank" rel="noopener">
+        <div class="fn">삼미횟집</div><div class="fd">🥗 무침회 · 현금 준비</div>
+        <div class="fx">납작만두 추가는 필수입니다. 대구의 맛을 느끼고 싶다면 추천드려요.</div>
+        <div class="fa">대구 중구 경상감영길 165-8</div>
+      </a>
+      <a class="food" href="https://naver.me/FjjnUBvC" target="_blank" rel="noopener">
+        <div class="fn">삼덕동 만타가오리바 시크릿</div><div class="fd">🥃 숙성회 찐맛집</div>
+        <div class="fx">아는 사람만 아는 시크릿한 분위기의 숙성회 맛집입니다.</div>
+        <div class="fa">대구 중구 국채보상로150길 84 2층</div>
+      </a>
+
+      <div class="fcat">🖐 대구 왔으면 꼭 가봐야 하는 곳</div>
+      <div class="food">
+        <div class="fn">1️⃣ 수성못 🦆</div>
+        <div class="fx">주변에 분위기 좋은 카페와 맛집이 모여 있어 식사와 티타임을 한 번에 해결하기 좋습니다. 날씨 좋은 날 호수 주변을 걸으면 대구 특유의 여유로운 감성을 제대로 느끼실 수 있어요 🚶</div>
+      </div>
+      <div class="food">
+        <div class="fn">2️⃣ 달성공원 새벽시장 🌅</div>
+        <div class="fx">주말 이른 아침에만 반짝 열리는 로컬 명소입니다. 가마솥 국밥과 갓 튀긴 꽈배기 같은 정겨운 먹거리로 특별하게 하루를 시작해 보세요 😋</div>
+      </div>
+
+      <p style="margin:16px 0 0; color:var(--ink-soft); font-size:13px">맛있게 드시고, 대구에서 좋은 추억 많이 만드시길 바랄게요 😊</p>
+    </div>
+  </div>
+
+  <a class="kakao" href="http://pf.kakao.com/_UxeKxin/chat" target="_blank" rel="noopener" style="margin-top:16px" data-i18n="tipKakao">💬 궁금한 점은 카카오톡으로 문의해 주세요</a>
+  <a class="btn btn-primary" href="index.html" style="margin-top:10px" data-i18n="home">← 처음으로</a>
+  <footer id="footer">홈스테드 스테이</footer>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+<script src="i18n.js"></script>
+<script>
+  document.querySelectorAll('.acch').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var box=document.getElementById(this.getAttribute('data-t'));
+      box.classList.toggle('open');
+      if(box.classList.contains('open')) window.scrollTo({top:box.offsetTop-14, behavior:'smooth'});
+    });
+  });
+  loadConfig(function(c){
+    [['tipDoor','imgDoor'],['tipLaundry','imgLaundry'],['tipAmenity','imgAmenity']].forEach(function(p){
+      var u=String(c[p[0]]||'').trim(), el=document.getElementById(p[1]);
+      if(u && u.indexOf('http')===0 && el){ el.onerror=function(){ el.style.display='none'; }; el.src=u; el.style.display='block'; }
+    });
+  });
+</script>
+</body>
+</html>

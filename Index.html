@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>홈스테드 스테이</title>
+<link rel="stylesheet" href="app.css">
+<style>
+  body{min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding:0 18px 48px}
+  .item{display:flex; align-items:center; gap:16px; background:var(--card); border:1px solid var(--line);
+    border-radius:18px; padding:20px 22px; text-decoration:none; color:var(--ink); margin-bottom:12px;
+    transition:transform .12s}
+  .item:active{transform:scale(.985)}
+  .item .emo{width:52px; height:52px; flex:none; border-radius:14px; background:var(--paper); border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center; font-size:26px}
+  .item .t{font-size:17px; font-weight:800}
+  .item .d{font-size:13px; color:var(--ink-soft); margin-top:1px}
+  .item .arw{color:var(--ink-soft); font-size:20px}
+  .deskbadge{display:inline-block; background:var(--pine); color:#fff; font-size:12px; font-weight:800;
+    letter-spacing:.02em; padding:5px 13px; border-radius:20px; margin:0 0 10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="langBar"></div>
+  <header>
+    <img class="logo" alt="홈스테드 스테이">
+    <p class="tagline">Together we are home</p>
+    <h1 id="title">홈스테드 스테이</h1>
+    <p class="deskbadge" data-i18n="deskBadge">🛎️ 스마트 안내데스크</p>
+    <p class="lead" data-i18n="homeLead">주차 · 짐 보관 · 퇴실까지<br>필요한 안내를 한 곳에서 도와드립니다.</p>
+  </header>
+
+  <a class="item" href="parking.html">
+    <div class="emo">🅿️</div>
+    <div class="grow"><div class="t" data-i18n="mParkT">주차 등록</div><div class="d" data-i18n="mParkD">차량 등록 · 출차 시간 공유</div></div>
+    <div class="arw">›</div>
+  </a>
+  <a class="item" href="baggage.html">
+    <div class="emo">🧳</div>
+    <div class="grow"><div class="t" data-i18n="mBagT">짐 보관</div><div class="d" data-i18n="mBagD">체크인 전 · 퇴실 후 짐 맡기기</div></div>
+    <div class="arw">›</div>
+  </a>
+  <a class="item" href="checkout.html">
+    <div class="emo">🚪</div>
+    <div class="grow"><div class="t" data-i18n="mOutT">퇴실하기</div><div class="d" data-i18n="mOutD">퇴실 완료 알림</div></div>
+    <div class="arw">›</div>
+  </a>
+  <a class="item" href="trash.html">
+    <div class="emo">🗑️</div>
+    <div class="grow"><div class="t" data-i18n="mTrashT">쓰레기 배출 안내</div><div class="d" data-i18n="mTrashD">음식물 · 일반 쓰레기 버리는 곳</div></div>
+    <div class="arw">›</div>
+  </a>
+
+  <a class="item" href="option.html">
+    <div class="emo">⏰</div>
+    <div class="grow"><div class="t" data-i18n="mOptT">얼리 및 레이트 체크아웃 신청</div><div class="d" data-i18n="mOptD">1시간 20,000원 · 여유스테이 30,000원</div></div>
+    <div class="arw">›</div>
+  </a>
+  <a class="item" href="tips.html">
+    <div class="emo">💡</div>
+    <div class="grow"><div class="t" data-i18n="mTipT">홈스테드 이용 Tip</div><div class="d" data-i18n="mTipD">도어락 · 세탁실 · 어메니티 · 맛집</div></div>
+    <div class="arw">›</div>
+  </a>
+  <a class="item" id="mWay" href="#" target="_blank" rel="noopener" style="display:none">
+    <div class="emo">🗺️</div>
+    <div class="grow"><div class="t" data-i18n="mWayT">홈스테드 오시는 길</div><div class="d" data-i18n="mWayD">골목 안 위치 · 찾아오는 방법</div></div>
+    <div class="arw">›</div>
+  </a>
+
+  <a class="kakao" href="http://pf.kakao.com/_UxeKxin/chat" target="_blank" rel="noopener" style="margin-top:6px" data-i18n="kakao">💬 카카오톡으로 문의하기</a>
+  <footer id="footer">홈스테드 스테이</footer>
+</div>
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+<script src="i18n.js"></script>
+<script>
+  loadConfig(function(c){
+    if(c.placeName) document.getElementById('title').textContent = c.placeName;
+    var w = String(c.wayLink || '').trim();
+    if(w && w.indexOf('http')===0){
+      var a=document.getElementById('mWay'); a.href=w; a.style.display='flex';
+    }
+  });
+</script>
+</body>
+</html>

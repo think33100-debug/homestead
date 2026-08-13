@@ -8,30 +8,32 @@
 </head>
 <body>
 <div class="wrap">
+  <div id="langBar"></div>
   <header>
     <img class="logo" alt="홈스테드 스테이">
     <div class="eyebrow">TRASH</div>
-    <h1>쓰레기 배출 안내</h1>
+    <h1 data-i18n="trashTitle">쓰레기 배출 안내</h1>
     <p class="tagline">Together we are home</p>
   </header>
 
   <div class="card">
-    <p style="margin:0; font-size:15.5px; line-height:1.7; word-break:keep-all">음식물 쓰레기와 일반 쓰레기 모두<br><b style="color:var(--pine)">건물 밖 오른쪽 분리수거장</b>에 버려주시면 됩니다.</p>
+    <p style="margin:0; font-size:15.5px; line-height:1.7; word-break:keep-all" data-i18n="trashBody">음식물 쓰레기와 일반 쓰레기 모두<br><b style="color:var(--pine)">건물 밖 오른쪽 분리수거장</b>에 버려주시면 됩니다.</p>
   </div>
 
   <div class="photos" id="photos"></div>
 
   <div class="card" style="background:#eef4f1; border-color:#cfe0d8">
-    <div style="font-size:15px; font-weight:800; color:var(--pine); margin-bottom:8px">🙏 다음 손님을 위한 마음</div>
-    <p style="margin:0; font-size:14px; line-height:1.65; word-break:keep-all">직접 버려주시는 작은 수고가 홈스테드를 더 쾌적하게 만듭니다. 늘 함께 지켜주셔서 진심으로 감사합니다.</p>
+    <div style="font-size:15px; font-weight:800; color:var(--pine); margin-bottom:8px" data-i18n="trashThxT">🙏 다음 손님을 위한 마음</div>
+    <p style="margin:0; font-size:14px; line-height:1.65; word-break:keep-all" data-i18n="trashThxD">직접 버려주시는 작은 수고가 홈스테드를 더 쾌적하게 만듭니다. 늘 함께 지켜주셔서 진심으로 감사합니다.</p>
   </div>
 
-  <a class="btn callbtn" href="#" style="display:none">📞 문의사항은 여기로 전화</a>
-  <a class="btn btn-primary" href="index.html" style="margin-top:10px">← 처음으로</a>
+  <a class="btn callbtn" href="#" style="display:none" data-i18n="callBtn">📞 문의사항은 여기로 전화</a>
+  <a class="btn btn-primary" href="index.html" style="margin-top:10px" data-i18n="home">← 처음으로</a>
   <footer id="footer">홈스테드 스테이</footer>
 </div>
 <div class="toast" id="toast"></div>
 <script src="app.js"></script>
+<script src="i18n.js"></script>
 <script>
   loadConfig(function(c){
     var box=document.getElementById('photos'), caps=['분리수거장 위치','배출 방법'];

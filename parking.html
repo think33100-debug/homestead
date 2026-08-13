@@ -45,6 +45,7 @@
       <div class="selwrap"><select id="room"><option value="">선택해주세요</option></select></div></div>
     <div class="field"><label for="plate">차량 번호</label><input type="text" id="plate" placeholder="예) 12가3456" autocomplete="off"></div>
     <div class="field"><label for="phone">휴대폰 번호</label><input type="tel" id="phone" placeholder="010-0000-0000" inputmode="numeric"></div>
+    <div class="field"><label for="enter">예상 입실 시간</label><input type="time" id="enter"></div>
     <div class="field"><label for="exit">예상 출차 시간</label><input type="time" id="exit"></div>
     <div class="field" style="margin-bottom:20px"><label for="note">전달사항 <span style="font-weight:400; color:var(--ink-soft)">(선택)</span></label><input type="text" id="note" placeholder="예) 아침 일찍 나갑니다" autocomplete="off"></div>
     <button class="btn btn-primary" id="registerBtn">등록하기</button>
@@ -62,7 +63,7 @@
   </div>
 
   <a class="btn callbtn" href="#" style="display:none">📞 숙소에 전화하기</a>
-  <a class="btn" id="blog" href="#" target="_blank" rel="noopener" style="display:none; margin-top:10px">🅿️ 다른 주차장 알아보기</a>
+  <a class="btn btn-amber" id="blog" href="#" target="_blank" rel="noopener" style="display:none; margin-top:10px">🅿️ 다른 주차장 알아보기 →</a>
   <a class="btn btn-primary" href="index.html" style="margin-top:10px">← 처음으로</a>
   <footer id="footer">홈스테드 스테이</footer>
 </div>
@@ -84,7 +85,7 @@
     <p>주차 가능 대수(4대)가 모두 채워졌습니다. 근처 공영주차장 이용을 부탁드립니다 🙏</p>
     <div class="modal-btns">
       <button class="btn" id="fCancel">닫기</button>
-      <a class="btn btn-primary" id="fBlog" href="#" target="_blank" rel="noopener" style="display:none">다른 주차장 알아보기</a>
+      <a class="btn btn-amber" id="fBlog" href="#" target="_blank" rel="noopener" style="display:none">🅿️ 다른 주차장 알아보기 →</a>
     </div>
   </div>
 </div>
@@ -127,6 +128,7 @@
       room: document.getElementById('room').value,
       plate: document.getElementById('plate').value.trim(),
       phone: document.getElementById('phone').value,
+      enterTime: document.getElementById('enter').value,
       exitTime: document.getElementById('exit').value,
       note: document.getElementById('note').value
     };
@@ -148,6 +150,7 @@
     if(!d.room){ toast('객실을 선택해주세요.'); return false; }
     if(!d.plate || d.plate.length<4){ toast('차량 번호를 정확히 입력해주세요.'); return false; }
     if(d.phone.replace(/[^0-9]/g,'').length<10){ toast('휴대폰 번호를 정확히 입력해주세요.'); return false; }
+    if(!d.enterTime){ toast('예상 입실 시간을 입력해주세요.'); return false; }
     if(!d.exitTime){ toast('예상 출차 시간을 입력해주세요.'); return false; }
     return true;
   }
@@ -165,7 +168,9 @@
       return;
     }
     document.getElementById('modalBody').innerHTML =
-      d.checkin+' · '+d.room+'<br>차량 '+d.plate+'<br>출차 예정 '+d.exitTime;
+      '<b>'+d.checkin+' · '+d.room+'</b><br>차량 '+d.plate+'<br>입실 예정 '+d.enterTime+' · 출차 예정 '+d.exitTime+
+      '<div style="margin-top:14px; background:#f1f5f3; border:1px solid #dce6e1; border-radius:10px; padding:12px 14px; font-size:12.5px; line-height:1.6; color:var(--ink); word-break:keep-all">'+
+      '🔒 다른 손님께는 <b>차량 번호(일부 가림)와 입실 · 출차 예정 시간</b>만 공유됩니다.<br>객실 번호, 성함, 연락처 등 나머지 정보는 공개되지 않습니다.</div>';
     document.getElementById('modal').className='modal-bg show';
   });
 
@@ -199,9 +204,9 @@
     api('getParkingList', { checkin:date, plate:plate }).then(function(res){
       if(!res || !res.ok){ area.innerHTML='<div style="text-align:center; padding:14px; color:#9b2c2c; font-size:13px">'+((res&&res.msg)||'조회 실패')+'</div>'; return; }
       var h='<div style="font-size:13px; font-weight:700; margin-bottom:6px">'+res.date+' · 총 '+res.count+'대</div>';
-      h+='<table><thead><tr><th>차량</th><th>출차 예정</th></tr></thead><tbody>';
+      h+='<table><thead><tr><th>차량</th><th>입실</th><th>출차</th></tr></thead><tbody>';
       res.list.forEach(function(r){
-        h+='<tr><td><b>'+r.plate+'</b>'+(r.note?'<br><span style="font-size:11.5px; color:var(--ink-soft)">📝 '+r.note+'</span>':'')+'</td><td>'+(r.exitTime||'미정')+'</td></tr>';
+        h+='<tr><td><b>'+r.plate+'</b>'+(r.note?'<br><span style="font-size:11.5px; color:var(--ink-soft)">📝 '+r.note+'</span>':'')+'</td><td>'+(r.enterTime||'-')+'</td><td>'+(r.exitTime||'미정')+'</td></tr>';
       });
       h+='</tbody></table>';
       area.innerHTML=h;
@@ -223,6 +228,7 @@
       document.getElementById('room').value=d.room;
       document.getElementById('plate').value=d.plate;
       document.getElementById('phone').value=d.phone;
+      document.getElementById('enter').value=d.enterTime||'';
       document.getElementById('exit').value=d.exitTime;
       document.getElementById('note').value=d.note;
       editOrigPlate=d.plate; setEditMode(true);

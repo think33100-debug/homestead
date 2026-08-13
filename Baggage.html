@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>짐 보관 · 홈스테드 스테이</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div class="wrap">
+  <div id="langBar"></div>
+  <header>
+    <img class="logo" alt="홈스테드 스테이">
+    <div class="eyebrow">BAGGAGE</div>
+    <h1 id="title" data-i18n="bagTitle">짐 보관</h1>
+    <p class="tagline">Together we are home</p>
+    <p class="lead" data-i18n="bagLead">체크인 전, 짐을 편하게 맡기고 다녀오세요.<br>체크인 당일 오전 8시부터 신청 가능합니다.</p>
+  </header>
+
+  <!-- 1단계: 신청 -->
+  <div class="card" id="step1">
+    <div class="nowbox">
+      <div class="cell"><div class="lbl" data-i18n="today">오늘 날짜</div><div class="val" id="nowDate">-</div></div>
+      <div class="cell"><div class="lbl" data-i18n="nowTime">현재 시각</div><div class="val" id="nowTime">-</div></div>
+    </div>
+
+    <div id="myInfo" style="display:none; background:#eef4f1; border:1px solid #cfe0d8; border-radius:12px; padding:14px 16px; margin-bottom:16px; text-align:center">
+      <div style="font-size:12.5px; color:var(--ink-soft); font-weight:700; margin-bottom:6px">✅ 신청이 확인되었습니다 · 공용현관 비밀번호</div>
+      <div id="myCode" style="font-size:30px; font-weight:800; color:var(--pine); letter-spacing:.06em">----</div>
+    </div>
+
+    <div class="guide">
+      <p><span class="gi">🧳</span><span data-i18n="bagG1">짐 보관은 <b>체크인 당일 오전 8시부터</b> 신청 가능합니다.</span></p>
+      <p><span class="gi">📅</span><span data-i18n="bagG2"><b>오늘 체크인하시는 분만</b> 신청해 주세요. 미리 신청 시 접수되지 않습니다.</span></p>
+      <p><span class="gi">📍</span><span data-i18n="bagG3">짐을 <b>예약하신 방문 옆 복도</b>에 두시면, 객실 정비가 끝난 뒤 <b>저희가 안으로 넣어드립니다.</b></span></p>
+    </div>
+
+    <div class="photos" id="sampleBox1" style="display:none; margin-bottom:16px">
+      <div style="font-size:12.5px; font-weight:700; color:var(--pine); margin-bottom:7px" data-i18n="sampleCap">📷 이렇게 놓아주시면 됩니다</div>
+      <img id="bagSample1" alt="짐보관 예시">
+    </div>
+
+    <div id="editBanner" style="display:none; background:#fdf3e2; border:1px solid #f0dcba; color:#7a5410; border-radius:11px; padding:11px 14px; font-size:13px; font-weight:700; margin-bottom:14px">✏️ 수정 모드입니다. 내용을 바꾼 뒤 '수정 완료'를 눌러주세요.</div>
+
+    <div class="field"><label for="checkin" data-i18n="ciDate">체크인 날짜</label><input type="date" id="checkin"></div>
+    <div class="field"><label for="room" data-i18n="bagRoom">예약하신 객실</label>
+      <div class="selwrap"><select id="room"><option value="">선택해주세요</option></select></div></div>
+    <div class="field"><label for="platform" data-i18n="bagPlat">예약하신 플랫폼</label>
+      <div class="selwrap"><select id="platform"><option value="">선택해주세요</option></select></div></div>
+    <div class="field"><label for="name" data-i18n="bagName">예약자 성함</label><input type="text" id="name" data-i18n-ph="bagNamePh" placeholder="예약자 본인 성함" autocomplete="off"></div>
+    <div class="field"><label for="phone" data-i18n="bagPhone">연락처</label><input type="tel" id="phone" placeholder="010-0000-0000" inputmode="numeric"></div>
+    <div class="field" style="margin-bottom:20px"><label for="arrive"><span data-i18n="bagArrive">예상 도착시간</span> <span style="font-weight:400; color:var(--ink-soft); font-size:12px" data-i18n="bagArriveSub">(짐 맡기러 오는 시간)</span></label><input type="time" id="arrive"></div>
+
+    <button class="btn btn-primary" id="reqBtn" data-i18n="bagSubmit">신청하기</button>
+    <button class="btn" id="editToggle" style="margin-top:10px" data-i18n="bagLookup">이미 신청하셨나요? 비밀번호 확인 · 수정 · 취소</button>
+    <button class="btn btn-danger" id="cancelReqBtn" style="display:none; margin-top:10px" data-i18n="bagCancel">🗑️ 짐보관 신청 취소</button>
+    <a class="btn callbtn" href="#" style="display:none; margin-top:10px" data-i18n="bagCallHelp">📞 예약 객실을 모르시겠나요? 문의하기</a>
+
+    <div class="warn" data-i18n="bagWarn">⚠️ 잘못 신청하셨다면 <b>다시 신청하지 마시고</b>, '수정 / 취소'로 변경하시거나 반드시 숙소로 연락 주세요. 중복 신청 시 정비에 혼선이 생깁니다.</div>
+    <div style="margin-top:16px; background:#fff4e6; border:2px solid #b5710f; border-radius:14px; padding:16px 18px">
+      <div style="font-size:15px; font-weight:800; color:#7a5410; margin-bottom:6px" data-i18n="lateT">🧳 퇴실 후에도 짐 보관이 가능합니다!</div>
+      <p style="margin:0 0 12px; font-size:13.5px; color:#7a5410; line-height:1.55; word-break:keep-all" data-i18n="lateD">체크아웃 후에는 지하 창고를 이용하실 수 있어요. 아래 버튼에서 이용 방법을 확인해 주세요.</p>
+      <button class="btn" id="lateBagBtn" style="background:#b5710f; color:#fff; border-color:#b5710f; font-size:16px" data-i18n="lateBtn">🧳 퇴실 후 짐 보관하기 →</button>
+    </div>
+  </div>
+
+  <!-- 조회 -->
+  <div class="card" id="lookupCard" style="display:none">
+    <div class="field"><label for="lkRoom" data-i18n="bagRoom">예약하신 객실</label>
+      <div class="selwrap"><select id="lkRoom"><option value="">선택해주세요</option></select></div></div>
+    <div class="field" style="margin-bottom:16px"><label for="lkName" data-i18n="bagName">예약자 성함</label><input type="text" id="lkName" placeholder="신청하신 예약자 성함" autocomplete="off"></div>
+    <button class="btn btn-primary" id="lkBtn" data-i18n="lkBtn">내 신청 불러오기</button>
+    <button class="btn" id="lkClose" style="margin-top:10px" data-i18n="close">닫기</button>
+  </div>
+
+  <!-- 2단계: 조회 연출 -->
+  <div class="card" id="step2" style="display:none">
+    <div style="text-align:center; padding:34px 0">
+      <div class="spinner"></div>
+      <p style="margin:0; font-weight:700; color:var(--ink-soft)" data-i18n="searching">예약자를 조회하고 있습니다...</p>
+    </div>
+  </div>
+
+  <!-- 3단계: 완료 -->
+  <div class="card" id="step3" style="display:none">
+    <div class="done" style="padding-bottom:6px">
+      <div class="check">✓</div>
+      <h2 data-i18n="bagDoneT">짐 보관 신청이 완료되었습니다</h2>
+      <p style="margin-bottom:16px" data-i18n="bagDoneD">입력하신 번호로 <b>비밀번호와 안내</b>를 보내드렸어요 :)</p>
+    </div>
+    <div class="clbl" data-i18n="entryCode">공용현관 비밀번호</div>
+    <div class="code" id="code">----</div>
+    <div class="guide">
+      <p><span class="gi">📍</span><span data-i18n="bagD1">짐은 <b>예약하신 객실 문 옆</b>, 문이 열리는 데 방해되지 않게 놓아주세요.</span></p>
+      <p><span class="gi">🛋️</span><span data-i18n="bagD2">객실 정비가 끝나면 <b>저희가 안으로 옮겨</b> 드립니다.</span></p>
+      <p><span class="gi">⏰</span><span data-i18n="bagD3">도착시간이 바뀌어도 <b>재신청하지 마시고</b> 그대로 짐 보관해 주세요.</span></p>
+    </div>
+    <div class="photos" id="sampleBox" style="display:none">
+      <div style="font-size:12.5px; font-weight:700; color:var(--pine); margin-bottom:7px" data-i18n="sampleCap">📷 이렇게 놓아주시면 됩니다</div>
+      <img id="bagSample" alt="짐보관 예시">
+    </div>
+    <a class="btn callbtn" href="#" style="display:none" data-i18n="callBtn">📞 문의사항은 여기로 전화</a>
+  </div>
+
+  <!-- 퇴실 후 짐보관 -->
+  <div class="card" id="lateBag" style="display:none">
+    <h2 style="font-size:19px; font-weight:800; margin:0 0 6px" data-i18n="lateTitle">🧳 퇴실 후 짐 보관 안내</h2>
+    <p style="margin:0 0 16px; font-size:14.5px" data-i18n="lateSub">퇴실 후에는 <b>지하 창고</b> 이용이 가능하십니다!</p>
+    <div class="guide">
+      <p><span class="gi">🔐</span><span data-i18n="lateHow"><b>이용 방법</b><br>정문 옆 "STAFF ONLY" 흰색 문이 지하로 내려가는 입구예요.</span></p>
+      <p><span class="gi">1️⃣</span><span><b id="lbCode">----</b> <span data-i18n="lateS1">누르고 아래로 내려가 주세요</span></span></p>
+      <p><span class="gi">2️⃣</span><span data-i18n="lateS2">바닥에 스티커 붙인 자리에 짐을 놓아주세요</span></p>
+      <p><span class="gi">3️⃣</span><span data-i18n="lateS3">종이에 성함과 전화번호를 적어 짐에 붙여주세요 📝</span></p>
+    </div>
+    <div class="photos" id="lbPhotos"></div>
+    <div class="warn" style="margin-top:0" data-i18n="lateWarn">⚠️ <b>꼭 확인해 주세요</b><br>
+      · 귀중품은 보관이 어려우니 꼭 소지해 주세요<br>
+      · 당일 오후 6시 이후에는 보관이 어렵습니다<br>
+      · 보관 시 분실 책임을 지지 않으며, 30일 뒤 폐기됩니다</div>
+    <div style="margin-top:18px; padding-top:18px; border-top:1px solid var(--line)">
+      <div style="font-size:14px; font-weight:800; margin-bottom:12px" data-i18n="lateForm">보관 신청하기</div>
+      <div class="field"><label for="lbName" data-i18n="lateName">성함</label><input type="text" id="lbName" placeholder="성함" autocomplete="off"></div>
+      <div class="field"><label for="lbPhone" data-i18n="latePhone">연락처</label><input type="tel" id="lbPhone" placeholder="010-0000-0000" inputmode="numeric"></div>
+      <div class="field" style="margin-bottom:18px"><label for="lbPickup" data-i18n="latePickup">찾아가실 시간</label><input type="time" id="lbPickup"></div>
+      <button class="btn btn-primary" id="lbSubmit" data-i18n="bagSubmit">신청하기</button>
+      <button class="btn" id="lbClose" style="margin-top:10px" data-i18n="close">닫기</button>
+    </div>
+    <p style="margin:16px 0 0; font-size:13px; color:var(--ink-soft); text-align:center">편안한 하루 보내세요 🌿</p>
+  </div>
+
+  <div class="card done" id="lateBagDone" style="display:none">
+    <div class="check">✓</div>
+    <h2 data-i18n="lateDoneT">보관 신청이 접수되었습니다</h2>
+    <p data-i18n="lateDoneD">지하 창고 안내대로 짐을 놓아주시면 됩니다.<br>편안한 하루 보내세요 🌿</p>
+  </div>
+
+  <a class="btn btn-primary" href="index.html" style="margin-top:6px" data-i18n="home">← 처음으로</a>
+  <footer id="footer">홈스테드 스테이</footer>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+<script src="i18n.js"></script>
+<script>
+  var bagEdit=false, origRoom='', origName='';
+  startClock('nowDate','nowTime');
+  document.getElementById('checkin').value = todayISO();
+
+  function show(step){ ['step1','step2','step3'].forEach(function(s){ document.getElementById(s).style.display = (s===step)?'block':'none'; }); }
+
+  loadConfig(function(c){
+    if(c.placeName) document.getElementById('title').textContent = c.placeName + ' 짐 보관';
+    fillSelect('room', c.rooms); fillSelect('lkRoom', c.rooms); fillSelect('platform', c.platforms);
+    var bs=String(c.bagSampleUrl||'').trim();
+    if(bs && bs.indexOf('http')===0){
+      [['bagSample','sampleBox'],['bagSample1','sampleBox1']].forEach(function(pair){
+        var img=document.getElementById(pair[0]), box=document.getElementById(pair[1]);
+        if(!img||!box) return;
+        img.onerror=function(){ box.style.display='none'; };
+        img.src=bs; box.style.display='block';
+      });
+    }
+    if(c.storageCode) document.getElementById('lbCode').textContent=c.storageCode;
+    var lb=document.getElementById('lbPhotos');
+    [c.lateBagUrl, c.lateBagUrl2].forEach(function(u){
+      if(!u || u.indexOf('http')!==0) return;
+      var im=document.createElement('img'); im.src=u; im.alt='퇴실 후 짐보관'; lb.appendChild(im);
+    });
+  });
+
+  function collect(){
+    return { checkin:document.getElementById('checkin').value, room:document.getElementById('room').value,
+      platform:document.getElementById('platform').value, name:document.getElementById('name').value,
+      phone:document.getElementById('phone').value, arrive:document.getElementById('arrive').value };
+  }
+
+  function setBagEdit(on){
+    bagEdit=on;
+    document.getElementById('editBanner').style.display=on?'block':'none';
+    document.getElementById('reqBtn').textContent=on?'수정 완료':'신청하기';
+    document.getElementById('editToggle').style.display=on?'none':'flex';
+    document.getElementById('cancelReqBtn').style.display=on?'flex':'none';
+    if(!on){ origRoom=''; origName=''; document.getElementById('myInfo').style.display='none'; }
+  }
+
+  document.getElementById('editToggle').addEventListener('click', function(){
+    var lc=document.getElementById('lookupCard');
+    lc.style.display='block';
+    window.scrollTo({top:lc.offsetTop-20, behavior:'smooth'});
+  });
+  document.getElementById('lkClose').addEventListener('click', function(){ document.getElementById('lookupCard').style.display='none'; });
+
+  document.getElementById('lkBtn').addEventListener('click', function(){
+    var room=document.getElementById('lkRoom').value, name=document.getElementById('lkName').value;
+    if(!room){ toast('예약하신 객실을 선택해주세요.'); return; }
+    if(!name || name.trim().length<2){ toast('예약자 성함을 입력해주세요.'); return; }
+    var b=this; b.disabled=true; b.textContent='불러오는 중...';
+    api('findBaggage', { room:room, name:name }).then(function(res){
+      b.disabled=false; b.textContent='내 신청 불러오기';
+      if(!res || !res.ok){ toast((res&&res.msg)||'조회 실패'); return; }
+      if(!res.found){ toast(res.msg||'신청 내역을 찾을 수 없어요.'); return; }
+      var d=res.data;
+      document.getElementById('room').value=d.room;
+      document.getElementById('platform').value=d.platform;
+      document.getElementById('name').value=d.name;
+      document.getElementById('phone').value=d.phone||'';
+      document.getElementById('arrive').value=d.arrive||'';
+      origRoom=d.room; origName=d.name;
+      setBagEdit(true);
+      document.getElementById('lookupCard').style.display='none';
+      if(res.code){ document.getElementById('myCode').textContent=res.code; document.getElementById('myInfo').style.display='block'; }
+      window.scrollTo({top:0, behavior:'smooth'});
+      toast('신청이 확인되었어요. 비밀번호와 정보를 확인하세요.', 1);
+    }).catch(function(){ b.disabled=false; b.textContent='내 신청 불러오기'; toast('통신 오류가 발생했어요.'); });
+  });
+
+  document.getElementById('cancelReqBtn').addEventListener('click', function(){
+    if(!confirm('짐보관 신청을 취소하시겠어요?')) return;
+    var b=this; b.disabled=true; b.textContent='취소 중...';
+    api('cancelBaggage', { room:origRoom, name:origName }).then(function(res){
+      b.disabled=false; b.textContent='🗑️ 짐보관 신청 취소';
+      if(res && res.ok){ toast('✅ '+res.msg, 1); setBagEdit(false);
+        document.getElementById('room').value=''; document.getElementById('platform').value=''; document.getElementById('name').value=''; document.getElementById('phone').value='';
+      } else toast((res&&res.msg)||'취소 실패');
+    }).catch(function(){ b.disabled=false; b.textContent='🗑️ 짐보관 신청 취소'; toast('통신 오류가 발생했어요.'); });
+  });
+
+  document.getElementById('reqBtn').addEventListener('click', function(){
+    var d=collect();
+    if(!d.checkin){ toast('체크인 날짜를 선택해주세요.'); return; }
+    if(!d.room){ toast('예약하신 객실을 선택해주세요.'); return; }
+    if(!d.platform){ toast('예약 플랫폼을 선택해주세요.'); return; }
+    if(!d.name || d.name.trim().length<2){ toast('예약자 성함을 입력해주세요.'); return; }
+    if(!d.phone || d.phone.replace(/[^0-9]/g,'').length<10){ toast('연락처를 정확히 입력해주세요.'); return; }
+
+    if(bagEdit){
+      d.origRoom=origRoom; d.origName=origName;
+      var rb=this; rb.disabled=true; rb.textContent='수정 중...';
+      api('updateBaggage', d).then(function(res){
+        rb.disabled=false;
+        if(res && res.ok){ setBagEdit(false); toast('✅ '+res.msg, 1); }
+        else { rb.textContent='수정 완료'; toast((res&&res.msg)||'수정 실패'); }
+      }).catch(function(){ rb.disabled=false; rb.textContent='수정 완료'; toast('통신 오류가 발생했어요.'); });
+      return;
+    }
+
+    var nowH=new Date().getHours();
+    if(d.checkin !== todayISO() || nowH < 8){ toast('짐보관은 체크인 당일 오전 8시 이후에 신청해 주세요.'); return; }
+
+    show('step2');
+    api('requestBaggage', d).then(function(res){
+      if(res && res.ok){
+        setTimeout(function(){
+          document.getElementById('code').textContent = res.code || '관리자 문의';
+          show('step3');
+          window.scrollTo({top:0, behavior:'smooth'});
+        }, 2200);
+      } else if(res && res.dup){
+        show('step1'); toast(res.msg);
+        var lc=document.getElementById('lookupCard');
+        lc.style.display='block';
+        document.getElementById('lkRoom').value=d.room;
+        if(d.name) document.getElementById('lkName').value=d.name;
+        setTimeout(function(){ window.scrollTo({top:lc.offsetTop-20, behavior:'smooth'}); }, 300);
+      } else { show('step1'); toast((res&&res.msg)||'신청에 실패했어요.'); }
+    }).catch(function(){ show('step1'); toast('통신 오류가 발생했어요.'); });
+  });
+
+  // 퇴실 후 짐보관
+  document.getElementById('lateBagBtn').addEventListener('click', function(){
+    document.getElementById('step1').style.display='none';
+    document.getElementById('lookupCard').style.display='none';
+    document.getElementById('lateBag').style.display='block';
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+  document.getElementById('lbClose').addEventListener('click', function(){
+    document.getElementById('lateBag').style.display='none';
+    document.getElementById('step1').style.display='block';
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+  document.getElementById('lbSubmit').addEventListener('click', function(){
+    var d={ name:document.getElementById('lbName').value, phone:document.getElementById('lbPhone').value, pickup:document.getElementById('lbPickup').value };
+    if(!d.name || d.name.trim().length<2){ toast('성함을 입력해 주세요.'); return; }
+    if(!d.phone || d.phone.replace(/[^0-9]/g,'').length<10){ toast('연락처를 정확히 입력해 주세요.'); return; }
+    if(!d.pickup){ toast('찾아가실 시간을 입력해 주세요.'); return; }
+    var b=this; b.disabled=true; b.textContent='신청 중...';
+    api('requestLateBaggage', d).then(function(res){
+      b.disabled=false; b.textContent='신청하기';
+      if(res && res.ok){
+        document.getElementById('lateBag').style.display='none';
+        document.getElementById('lateBagDone').style.display='block';
+        window.scrollTo({top:0, behavior:'smooth'});
+      } else toast((res&&res.msg)||'신청에 실패했어요.');
+    }).catch(function(){ b.disabled=false; b.textContent='신청하기'; toast('통신 오류가 발생했어요.'); });
+  });
+</script>
+</body>
+</html>
