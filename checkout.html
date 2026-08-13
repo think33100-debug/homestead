@@ -8,64 +8,66 @@
 </head>
 <body>
 <div class="wrap">
+  <div id="langBar"></div>
   <header>
     <img class="logo" alt="홈스테드 스테이">
     <div class="eyebrow">CHECK-OUT</div>
-    <h1 id="title">퇴실하기</h1>
+    <h1 id="title" data-i18n="outTitle">퇴실하기</h1>
     <p class="tagline">Together we are home</p>
-    <p class="lead">집처럼 편안한 시간 보내셨길 바랍니다.<br>홈스테드 스테이를 이용해 주셔서 진심으로 감사합니다.</p>
+    <p class="lead" data-i18n="outLead">집처럼 편안한 시간 보내셨길 바랍니다.<br>홈스테드 스테이를 이용해 주셔서 진심으로 감사합니다.</p>
   </header>
 
   <div class="guide" id="guide">
-    <p><span class="gi">🧳</span><span>퇴실 전, <b>두고 가시는 물품이 없는지</b> 한 번만 더 확인해 주세요.</span></p>
-    <p><span class="gi">🗑️</span><span>큰 쓰레기는 <b>건물 오른쪽 분리수거장</b>에 버려주시면 정말 감사하겠습니다.</span></p>
+    <p><span class="gi">🧳</span><span data-i18n="outG1">퇴실 전, <b>두고 가시는 물품이 없는지</b> 한 번만 더 확인해 주세요.</span></p>
+    <p><span class="gi">🗑️</span><span data-i18n="outG2">큰 쓰레기는 <b>건물 오른쪽 분리수거장</b>에 버려주시면 정말 감사하겠습니다.</span></p>
   </div>
 
   <div class="card" id="form">
     <div class="nowbox">
-      <div class="cell"><div class="lbl">퇴실 일</div><div class="val" id="nowDate">-</div></div>
-      <div class="cell"><div class="lbl">현재 시각</div><div class="val" id="nowTime">-</div></div>
+      <div class="cell"><div class="lbl" data-i18n="outDate">퇴실 일</div><div class="val" id="nowDate">-</div></div>
+      <div class="cell"><div class="lbl" data-i18n="nowTime">현재 시각</div><div class="val" id="nowTime">-</div></div>
     </div>
-    <div class="field"><label for="room">이용하신 객실</label>
-      <div class="selwrap"><select id="room"><option value="">선택해주세요</option></select></div></div>
-    <button class="btn btn-primary" id="btn">퇴실 완료</button>
+    <div class="field"><label for="room" data-i18n="outRoom">이용하신 객실</label>
+      <div class="selwrap"><select id="room"><option value="" data-i18n="selectPlease">선택해주세요</option></select></div></div>
+    <button class="btn btn-primary" id="btn" data-i18n="outBtn">퇴실 완료</button>
   </div>
 
   <div class="card done" id="done" style="display:none">
     <div class="check">✓</div>
-    <h2>퇴실이 완료되었습니다</h2>
-    <p>조심히 들어가세요. 다음에 또 뵙겠습니다 :)</p>
+    <h2 data-i18n="outDoneT">퇴실이 완료되었습니다</h2>
+    <p data-i18n="outDoneD">조심히 들어가세요. 다음에 또 뵙겠습니다 :)</p>
   </div>
 
   <div class="card" id="fbCard" style="display:none">
-    <h3 style="margin:0 0 6px; font-size:16px; font-weight:800">불편하셨던 점이 있으셨나요?</h3>
-    <p style="margin:0 0 14px; font-size:13.5px; color:var(--ink-soft); line-height:1.55; word-break:keep-all">편하게 남겨주시면 꼭 확인하고 보완하겠습니다. 작은 의견도 큰 도움이 됩니다 🙏</p>
-    <textarea id="fbText" placeholder="예: 온수가 늦게 나왔어요 / 수건이 부족했어요"></textarea>
-    <button class="btn btn-primary" id="fbBtn" style="margin-top:12px; padding:14px; font-size:15px">의견 보내기</button>
+    <h3 style="margin:0 0 6px; font-size:16px; font-weight:800" data-i18n="fbT">불편하셨던 점이 있으셨나요?</h3>
+    <p style="margin:0 0 14px; font-size:13.5px; color:var(--ink-soft); line-height:1.55; word-break:keep-all" data-i18n="fbD">편하게 남겨주시면 꼭 확인하고 보완하겠습니다. 작은 의견도 큰 도움이 됩니다 🙏</p>
+    <textarea id="fbText" data-i18n-ph="fbPh" placeholder="예: 온수가 늦게 나왔어요 / 수건이 부족했어요"></textarea>
+    <button class="btn btn-primary" id="fbBtn" style="margin-top:12px; padding:14px; font-size:15px" data-i18n="fbBtn">의견 보내기</button>
   </div>
 
   <div class="card done" id="fbDone" style="display:none">
-    <h3 style="margin:0 0 6px; font-size:16px; font-weight:800">소중한 의견 감사합니다 💚</h3>
-    <p>보내주신 내용은 꼭 확인하고 보완하겠습니다.</p>
+    <h3 style="margin:0 0 6px; font-size:16px; font-weight:800" data-i18n="fbDoneT">소중한 의견 감사합니다 💚</h3>
+    <p data-i18n="fbDoneD">보내주신 내용은 꼭 확인하고 보완하겠습니다.</p>
   </div>
 
-  <a class="btn" href="index.html" id="homeBtn" style="display:none">← 처음으로</a>
+  <a class="btn" href="index.html" id="homeBtn" style="display:none" data-i18n="home">← 처음으로</a>
   <footer id="footer">홈스테드 스테이</footer>
 </div>
 
 <div class="modal-bg" id="modal">
   <div class="modal">
-    <h3>퇴실을 완료하시겠어요?</h3>
-    <p>버튼을 누르시면 바로 객실 청소가 시작됩니다. 두고 가신 물품이 없는지 한 번만 더 확인해 주세요!</p>
+    <h3 data-i18n="outMsgT">퇴실을 완료하시겠어요?</h3>
+    <p data-i18n="outMsgD">버튼을 누르시면 바로 객실 청소가 시작됩니다. 두고 가신 물품이 없는지 한 번만 더 확인해 주세요!</p>
     <div class="modal-btns">
-      <button class="btn" id="cancelBtn">다시 확인</button>
-      <button class="btn btn-primary" id="confirmBtn">네, 퇴실할게요</button>
+      <button class="btn" id="cancelBtn" data-i18n="recheck">다시 확인</button>
+      <button class="btn btn-primary" id="confirmBtn" data-i18n="outYes">네, 퇴실할게요</button>
     </div>
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
 <script src="app.js"></script>
+<script src="i18n.js"></script>
 <script>
   startClock('nowDate','nowTime');
   loadConfig(function(c){
