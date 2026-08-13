@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>주차 등록 · 홈스테드 스테이</title>
-<link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="app.css?v=3">
 <style>
   .lot{display:flex; gap:6px; margin:14px 0 4px}
   .lot .s{flex:1; text-align:center; padding:10px 4px; border:1px solid var(--line); border-radius:9px; font-size:12px; font-weight:700; background:#fdfcfa; color:var(--ink-soft)}
@@ -65,7 +65,7 @@
   <a class="btn callbtn" href="#" style="display:none">📞 숙소에 전화하기</a>
   <a class="btn btn-amber" id="blog" href="#" target="_blank" rel="noopener" style="display:none; margin-top:10px">🅿️ 다른 주차장 알아보기 →</a>
   <a class="btn btn-primary" href="index.html" style="margin-top:10px">← 처음으로</a>
-  <footer id="footer">홈스테드 스테이</footer>
+  <footer id="footer">Copyright &copy; 2026 홈스테드 스테이 All rights reserved.</footer>
 </div>
 
 <div class="modal-bg" id="modal">
@@ -102,7 +102,7 @@
 </div>
 
 <div class="toast" id="toast"></div>
-<script src="app.js"></script>
+<script src="app.js?v=3"></script>
 <script>
   var editMode=false, editOrigPlate='';
   document.getElementById('checkin').value = todayISO();

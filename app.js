@@ -60,7 +60,9 @@ function loadConfig(cb) {
       if (CFG.phoneContact && CFG.phoneContact.length >= 8) { b.href = 'tel:' + CFG.phoneContact; b.style.display = 'flex'; }
     });
     var f = document.getElementById('footer');
-    if (f && CFG.placeName) f.textContent = CFG.placeName;
+    if (f && CFG.placeName) {
+      f.innerHTML = 'Copyright &copy; ' + new Date().getFullYear() + ' ' + CFG.placeName + ' All rights reserved.';
+    }
     if (cb) cb(CFG);
   }).catch(function (e) {
     toast('설정을 불러오지 못했습니다. 새로고침해 주세요.');

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>홈스테드 스테이</title>
-<link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="app.css?v=3">
 <style>
   body{min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding:0 18px 48px}
   .item{display:flex; align-items:center; gap:16px; background:var(--card); border:1px solid var(--line);
@@ -69,11 +69,11 @@
   </a>
 
   <a class="kakao" href="http://pf.kakao.com/_UxeKxin/chat" target="_blank" rel="noopener" style="margin-top:6px" data-i18n="kakao">💬 카카오톡으로 문의하기</a>
-  <footer id="footer">홈스테드 스테이</footer>
+  <footer id="footer">Copyright &copy; 2026 홈스테드 스테이 All rights reserved.</footer>
 </div>
 <div class="toast" id="toast"></div>
-<script src="app.js"></script>
-<script src="i18n.js"></script>
+<script src="app.js?v=3"></script>
+<script src="i18n.js?v=3"></script>
 <script>
   loadConfig(function(c){
     if(c.placeName) document.getElementById('title').textContent = c.placeName;
