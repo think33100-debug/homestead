@@ -53,6 +53,10 @@ var I18N = {
     bagD2:'객실 정비가 끝나면 <b>저희가 안으로 옮겨</b> 드립니다.',
     bagD3:'도착시간이 바뀌어도 <b>재신청하지 마시고</b> 그대로 짐 보관해 주세요.',
     sampleCap:'📷 이렇게 놓아주시면 됩니다',
+    coldT:'🧊 냉장 · 냉동 보관 안내',
+    cold1:'<b>냉장 보관이 필요한 물품</b>은 미리 말씀해 주시면, 짐 보관 시 바로 냉장고에 넣어드립니다.',
+    cold2:'<b>냉동 보관</b>은 104호를 제외한 객실에서는 어렵습니다.',
+    cold3:'부피가 큰 물품은 냉장 보관이 어려울 수 있습니다 🥲<br>· 일반 레터링 케이크 크기 → 가능<br>· 성심당 망고시루 케이크 크기 → 어려움',
     lateTitle:'🧳 퇴실 후 짐 보관 안내', lateSub:'퇴실 후에는 <b>지하 창고</b> 이용이 가능하십니다!',
     lateHow:'<b>이용 방법</b><br>정문 옆 "STAFF ONLY" 흰색 문이 지하로 내려가는 입구예요.',
     lateS1:'누르고 아래로 내려가 주세요', lateS2:'바닥에 스티커 붙인 자리에 짐을 놓아주세요',
@@ -116,6 +120,10 @@ var I18N = {
     bagD2:'We will move it inside <b>once housekeeping is finished</b>.',
     bagD3:'If your arrival time changes, <b>no need to reapply</b> — just leave your luggage as planned.',
     sampleCap:'📷 Please place it like this',
+    coldT:'🧊 Refrigerated & Frozen Storage',
+    cold1:'If you have items that <b>need refrigeration</b>, please let us know in advance and we will put them in the fridge right away.',
+    cold2:'<b>Freezer storage</b> is not available except for Room 104.',
+    cold3:'Bulky items may not fit in the fridge 🥲<br>· Standard lettering cake size → OK<br>· Extra-large cake (e.g. Sungsimdang Mango Siru) → not possible',
     lateTitle:'🧳 Storage after check-out', lateSub:'You can use the <b>basement storage room</b> after check-out!',
     lateHow:'<b>How to use</b><br>The white "STAFF ONLY" door next to the main entrance leads downstairs.',
     lateS1:'Enter this code and go downstairs', lateS2:'Place your luggage on the marked spot on the floor',
@@ -178,6 +186,10 @@ var I18N = {
     bagD2:'清掃が終わり次第<b>中へお運びいたします</b>。',
     bagD3:'到着時間が変わっても<b>再申請は不要</b>です。そのままお預けください。',
     sampleCap:'📷 このように置いてください',
+    coldT:'🧊 冷蔵・冷凍保管のご案内',
+    cold1:'<b>冷蔵保管が必要なお品物</b>は事前にお知らせいただければ、お預かり時にすぐ冷蔵庫へお入れいたします。',
+    cold2:'<b>冷凍保管</b>は104号室を除き承ることができません。',
+    cold3:'かさばるお品物は冷蔵保管が難しい場合がございます 🥲<br>· 一般的なレタリングケーキのサイズ → 可能<br>· 特大サイズのケーキ（聖心堂マンゴーシルなど）→ 不可',
     lateTitle:'🧳 チェックアウト後の荷物預かり', lateSub:'チェックアウト後は<b>地下倉庫</b>をご利用いただけます！',
     lateHow:'<b>ご利用方法</b><br>正面玄関横の「STAFF ONLY」と書かれた白い扉が地下への入口です。',
     lateS1:'この番号を押して地下へお進みください', lateS2:'床のステッカーの位置にお荷物を置いてください',
@@ -191,6 +203,72 @@ var I18N = {
     tip3T:'タオル・アメニティの追加', tip3D:'予備の備品がある場所',
     tip4T:'近くのグルメ・コンビニ', tip4D:'ホストおすすめのお店',
     tipKakao:'💬 ご不明な点はカカオトークでお問い合わせください'
+  },
+
+  zh: {
+    langName:'简体中文',
+    home:'← 返回首页', kakao:'💬 通过 KakaoTalk 咨询', callBtn:'📞 电话咨询',
+    deskBadge:'🛎️ 智能前台',
+    homeLead:'停车、行李寄存、退房——<br>您需要的指引都在这里。',
+    mParkT:'停车登记', mParkD:'登记车辆 · 共享出车时间',
+    mBagT:'行李寄存', mBagD:'入住前 · 退房后均可寄存',
+    mOutT:'办理退房', mOutD:'退房完成通知',
+    mTrashT:'垃圾投放指南', mTrashD:'厨余垃圾与一般垃圾的投放点',
+    mOptT:'提前入住 / 延迟退房申请', mOptD:'每小时 20,000韩元 · 套餐 30,000韩元',
+    mTipT:'住宿小贴士', mTipD:'门锁 · 洗衣房 · 备品 · 美食',
+    mWayT:'交通路线', mWayD:'我们位于小巷内 · 查看路线',
+    outTitle:'办理退房', outLead:'希望您在这里住得像在家一样舒适。<br>感谢您选择 Homestead Stay。',
+    outG1:'离开前请<b>再确认一次是否有遗留物品</b>。',
+    outG2:'大件垃圾请投放至<b>楼外右侧的分类回收处</b>，非常感谢！',
+    outDate:'退房日期', nowTime:'当前时间', outRoom:'您入住的房间', selectPlease:'请选择',
+    outBtn:'退房完成', outDoneT:'退房已完成', outDoneD:'祝您旅途平安，期待再次相见 :)',
+    outMsgT:'确认办理退房吗？', outMsgD:'点击后将立即开始客房清洁。请再确认一次是否有遗留物品！',
+    recheck:'再确认一下', outYes:'是，我要退房',
+    fbT:'有什么不便之处吗？', fbD:'欢迎随时告诉我们，我们会认真查看并改进 🙏',
+    fbPh:'例如：热水来得慢 / 毛巾不够', fbBtn:'发送意见',
+    fbDoneT:'感谢您的宝贵意见 💚', fbDoneD:'我们会认真查看并加以改进。',
+    trashTitle:'垃圾投放指南',
+    trashBody:'厨余垃圾与一般垃圾均请投放至<br><b>楼外右侧的分类回收处</b>。',
+    trashThxT:'🙏 为了下一位客人',
+    trashThxD:'您的这份小小心意让 Homestead 更加整洁舒适。一直以来的配合，我们真心感谢。',
+    bagTitle:'行李寄存', bagLead:'入住前可先寄存行李，轻松出门游玩。<br>入住当天上午8点起可申请。',
+    today:'今天日期',
+    bagG1:'行李寄存自<b>入住当天上午8点起</b>可申请。',
+    bagG2:'请<b>仅在当天入住</b>时申请。提前申请将无法受理。',
+    bagG3:'请将行李放在<b>您预订房间门旁的走廊</b>，客房整理完毕后我们会帮您搬进房内。',
+    ciDate:'入住日期', bagRoom:'您预订的房间', bagPlat:'预订平台',
+    bagName:'预订人姓名', bagNamePh:'预订本人姓名', bagPhone:'联系电话',
+    bagArrive:'预计到达时间', bagArriveSub:'（送行李过来的时间）',
+    bagSubmit:'提交申请', bagLookup:'已经申请过了？查看密码 · 修改 · 取消',
+    bagCancel:'🗑️ 取消寄存申请', bagCallHelp:'📞 不清楚房间号？请联系我们',
+    bagWarn:'⚠️ 如果填错了，<b>请勿重复申请</b>，请通过「修改 / 取消」更改或直接联系我们。重复申请会造成客房整理混乱。',
+    lateT:'🧳 退房后也可以寄存行李！',
+    lateD:'退房后可使用地下储物间。请查看下方的使用方法。',
+    lateBtn:'🧳 退房后寄存行李 →',
+    lkBtn:'读取我的申请', close:'关闭', searching:'正在查询您的预订...',
+    bagDoneT:'行李寄存申请已完成', bagDoneD:'我们已将<b>密码与指引</b>发送至您填写的号码 :)',
+    entryCode:'公共大门密码',
+    bagD1:'请将行李放在<b>您预订房间的门旁</b>，注意不要挡住门的开合。',
+    bagD2:'客房整理完成后<b>我们会帮您搬进房内</b>。',
+    bagD3:'即使到达时间有变，<b>也无需重新申请</b>，按原计划寄存即可。',
+    sampleCap:'📷 请像这样放置',
+    coldT:'🧊 冷藏 · 冷冻寄存说明',
+    cold1:'如有<b>需要冷藏</b>的物品，请提前告知，我们会在寄存时立即放入冰箱。',
+    cold2:'<b>冷冻寄存</b>除104号房外无法提供。',
+    cold3:'体积较大的物品可能无法放入冰箱 🥲<br>· 普通字牌蛋糕大小 → 可以<br>· 超大尺寸蛋糕（如圣心堂芒果蛋糕）→ 无法提供',
+    lateTitle:'🧳 退房后行李寄存', lateSub:'退房后可使用<b>地下储物间</b>！',
+    lateHow:'<b>使用方法</b><br>正门旁标有「STAFF ONLY」的白色门是通往地下的入口。',
+    lateS1:'输入此密码后下楼', lateS2:'请将行李放在地面贴有贴纸的位置',
+    lateS3:'请在纸上写下姓名和电话号码并贴在行李上 📝',
+    lateWarn:'⚠️ <b>请务必确认</b><br>· 贵重物品无法寄存，请随身携带<br>· 当天下午6点以后无法寄存<br>· 我们无法承担丢失责任，物品将在30天后处理',
+    lateForm:'申请寄存', lateName:'姓名', latePhone:'联系电话', latePickup:'预计取回时间',
+    lateDoneT:'寄存申请已受理', lateDoneD:'请按上述指引放置行李。<br>祝您度过美好的一天 🌿',
+    tipTitle:'住宿小贴士', tipLead:'为您整理了入住期间<br>值得了解的小提示。',
+    tip1T:'门锁 · 内部反锁', tip1D:'让门从外面完全无法打开的方法',
+    tip2T:'洗衣房使用方法', tip2D:'洗衣机 · 干衣机 · 洗涤剂位置',
+    tip3T:'毛巾 · 备品补充', tip3D:'备用物品存放处',
+    tip4T:'周边美食 & 便利设施', tip4D:'房东亲自推荐',
+    tipKakao:'💬 有任何疑问请通过 KakaoTalk 咨询'
   }
 };
 
@@ -198,6 +276,7 @@ function getLang(){
   try { var v = localStorage.getItem('hs_lang'); if (v && I18N[v]) return v; } catch(e){}
   var n = (navigator.language || 'ko').toLowerCase();
   if (n.indexOf('ja') === 0) return 'ja';
+  if (n.indexOf('zh') === 0) return 'zh';
   if (n.indexOf('ko') === 0) return 'ko';
   return n.indexOf('en') === 0 ? 'en' : 'ko';
 }
@@ -210,7 +289,7 @@ function setLang(l){
 
 function applyLang(l){
   var d = I18N[l] || I18N.ko;
-  document.documentElement.lang = (l === 'ja' ? 'ja' : (l === 'en' ? 'en' : 'ko'));
+  document.documentElement.lang = (l === 'ja' ? 'ja' : (l === 'en' ? 'en' : (l === 'zh' ? 'zh-CN' : 'ko')));
   document.querySelectorAll('[data-i18n]').forEach(function(el){
     var k = el.getAttribute('data-i18n');
     if (d[k] != null) el.innerHTML = d[k];
@@ -229,8 +308,9 @@ function applyLang(l){
 function initLangBar(){
   var bar = document.getElementById('langBar');
   if (!bar) return;
-  bar.innerHTML = ['ko','en','ja'].map(function(l){
-    return '<button class="langbtn" data-l="'+l+'">'+(l==='ko'?'한국어':(l==='en'?'EN':'日本語'))+'</button>';
+  var NAMES = { ko:'한국어', en:'EN', ja:'日本語', zh:'中文' };
+  bar.innerHTML = ['ko','en','ja','zh'].map(function(l){
+    return '<button class="langbtn" data-l="'+l+'">'+NAMES[l]+'</button>';
   }).join('');
   bar.querySelectorAll('.langbtn').forEach(function(b){
     b.addEventListener('click', function(){ setLang(this.getAttribute('data-l')); });
