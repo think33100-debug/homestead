@@ -132,6 +132,8 @@
       · 보관 시 분실 책임을 지지 않으며, 30일 뒤 폐기됩니다</div>
     <div style="margin-top:18px; padding-top:18px; border-top:1px solid var(--line)">
       <div style="font-size:14px; font-weight:800; margin-bottom:12px" data-i18n="lateForm">보관 신청하기</div>
+      <div class="field"><label for="lbRoom" data-i18n="lateRoom">이용하셨던 객실</label>
+        <div class="selwrap"><select id="lbRoom"><option value="" data-i18n="selectPlease">선택해주세요</option></select></div></div>
       <div class="field"><label for="lbName" data-i18n="lateName">성함</label><input type="text" id="lbName" placeholder="성함" autocomplete="off"></div>
       <div class="field"><label for="lbPhone" data-i18n="latePhone">연락처</label><input type="tel" id="lbPhone" placeholder="010-0000-0000" inputmode="numeric"></div>
       <div class="field" style="margin-bottom:18px"><label for="lbPickup" data-i18n="latePickup">찾아가실 시간</label><input type="time" id="lbPickup"></div>
@@ -173,7 +175,7 @@
 
   loadConfig(function(c){
     if(c.placeName) document.getElementById('title').textContent = c.placeName + ' 짐 보관';
-    fillSelect('room', c.rooms); fillSelect('lkRoom', c.rooms); fillSelect('platform', c.platforms);
+    fillSelect('room', c.rooms); fillSelect('lkRoom', c.rooms); fillSelect('lbRoom', c.rooms); fillSelect('platform', c.platforms);
     var bs=String(c.bagSampleUrl||'').trim();
     if(bs && bs.indexOf('http')===0){
       [['bagSample','sampleBox'],['bagSample1','sampleBox1']].forEach(function(pair){
@@ -301,7 +303,8 @@
     window.scrollTo({top:0, behavior:'smooth'});
   });
   document.getElementById('lbSubmit').addEventListener('click', function(){
-    var d={ name:document.getElementById('lbName').value, phone:document.getElementById('lbPhone').value, pickup:document.getElementById('lbPickup').value };
+    var d={ room:document.getElementById('lbRoom').value, name:document.getElementById('lbName').value, phone:document.getElementById('lbPhone').value, pickup:document.getElementById('lbPickup').value };
+    if(!d.room){ toast('이용하셨던 객실을 선택해 주세요.'); return; }
     if(!d.name || d.name.trim().length<2){ toast('성함을 입력해 주세요.'); return; }
     if(!d.phone || d.phone.replace(/[^0-9]/g,'').length<10){ toast('연락처를 정확히 입력해 주세요.'); return; }
     if(!d.pickup){ toast('찾아가실 시간을 입력해 주세요.'); return; }
