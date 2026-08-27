@@ -163,6 +163,19 @@
   <footer id="footer">Copyright &copy; 2026 홈스테드 스테이 All rights reserved.</footer>
 </div>
 
+<div class="modal-bg" id="lbModal">
+  <div class="modal">
+    <h3 data-i18n="lossT">⚠️ 신청 전 꼭 확인해 주세요</h3>
+    <p data-i18n="lossD">지하 창고는 <b>공용 보관 공간</b>입니다.<br>
+    귀중품·고가품·분실 위험이 있는 물품은 <b>보관하지 마시고 꼭 소지</b>해 주세요.<br><br>
+    보관 중 발생한 <b>분실이나 파손에 대해서는 책임지지 않습니다.</b> 이 점 양해 부탁드립니다.</p>
+    <div class="modal-btns">
+      <button class="btn" id="lbCancel" data-i18n="recheck">다시 확인</button>
+      <button class="btn btn-primary" id="lbConfirm" data-i18n="lossOk">확인했습니다</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 <script src="app.js?v=3"></script>
 <script src="i18n.js?v=3"></script>
@@ -308,7 +321,16 @@
     if(!d.name || d.name.trim().length<2){ toast('성함을 입력해 주세요.'); return; }
     if(!d.phone || d.phone.replace(/[^0-9]/g,'').length<10){ toast('연락처를 정확히 입력해 주세요.'); return; }
     if(!d.pickup){ toast('찾아가실 시간을 입력해 주세요.'); return; }
-    var b=this; b.disabled=true; b.textContent='신청 중...';
+    document.getElementById('lbModal').className='modal-bg show';
+  });
+
+  document.getElementById('lbCancel').addEventListener('click', function(){ document.getElementById('lbModal').className='modal-bg'; });
+  document.getElementById('lbModal').addEventListener('click', function(e){ if(e.target.id==='lbModal') this.className='modal-bg'; });
+
+  document.getElementById('lbConfirm').addEventListener('click', function(){
+    document.getElementById('lbModal').className='modal-bg';
+    var d={ room:document.getElementById('lbRoom').value, name:document.getElementById('lbName').value, phone:document.getElementById('lbPhone').value, pickup:document.getElementById('lbPickup').value };
+    var b=document.getElementById('lbSubmit'); b.disabled=true; b.textContent='신청 중...';
     api('requestLateBaggage', d).then(function(res){
       b.disabled=false; b.textContent='신청하기';
       if(res && res.ok){
