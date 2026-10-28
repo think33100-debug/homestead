@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>셀프 체크인 안내 · 홈스테드 스테이</title>
+<link rel="stylesheet" href="app.css?v=4">
+<style>
+  .alertbox{background:#fff1f1; border:2px solid #c0392b; border-radius:16px; padding:18px 20px; margin-bottom:16px}
+  .alertbox .abt{font-size:17px; font-weight:900; color:#9b2c2c; margin-bottom:10px; word-break:keep-all; letter-spacing:-.01em}
+  .alertbox p{margin:0 0 9px; font-size:13.5px; color:#6e2020; line-height:1.65; word-break:keep-all}
+  .alertbox p:last-child{margin-bottom:0}
+  .alertbox b{color:#9b2c2c; font-weight:800}
+  .idlist{list-style:none; margin:4px 0 0; padding:0}
+  .idlist li{display:flex; gap:9px; align-items:flex-start; font-size:13.5px; color:#4a3b2a; line-height:1.6;
+    background:#fff; border:1px solid #e8d9d6; border-radius:11px; padding:12px 14px; margin-bottom:8px; word-break:keep-all}
+  .idlist li .ic{flex:none; font-size:15px}
+  .idlist li b{color:var(--ink); font-weight:800}
+  .nopass{background:#fde8e8; border:1.5px solid #c0392b; color:#9b2c2c; border-radius:11px;
+    padding:12px 14px; font-size:13.5px; font-weight:800; margin-top:4px; word-break:keep-all; line-height:1.55}
+  .steps{counter-reset:st; list-style:none; margin:0; padding:0}
+  .steps li{counter-increment:st; position:relative; padding:0 0 18px 46px; font-size:14.5px; line-height:1.6;
+    color:var(--ink); word-break:keep-all}
+  .steps li:before{content:counter(st); position:absolute; left:0; top:-2px; width:32px; height:32px;
+    border-radius:50%; background:var(--pine); color:#fff; font-size:15px; font-weight:800;
+    display:flex; align-items:center; justify-content:center}
+  .steps li:after{content:''; position:absolute; left:15.5px; top:32px; bottom:2px; width:1.5px; background:var(--line)}
+  .steps li:last-child{padding-bottom:0}
+  .steps li:last-child:after{display:none}
+  .steps li b{font-weight:800; color:var(--pine)}
+  .keybox{background:#fff4e6; border:2px solid #b5710f; border-radius:16px; padding:18px 20px; margin-bottom:16px}
+  .keybox .kbt{font-size:16px; font-weight:900; color:#7a5410; margin-bottom:9px; word-break:keep-all}
+  .keybox p{margin:0; font-size:13.5px; color:#5c4210; line-height:1.65; word-break:keep-all}
+  .keybox b{color:#7a5410; font-weight:800}
+  .sech{font-size:16px; font-weight:800; margin:0 0 14px; word-break:keep-all}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="langBar"></div>
+  <header>
+    <img class="logo" alt="홈스테드 스테이">
+    <div class="eyebrow">SELF CHECK-IN</div>
+    <h1 id="title" data-i18n="ciTitle">무인 셀프 체크인 안내</h1>
+    <p class="tagline">Together we are home</p>
+    <p class="lead" data-i18n="ciLead">원활한 체크인을 위해 아래 내용과<br><b>필수 준비물</b>을 꼭 확인해 주세요.</p>
+  </header>
+
+  <div class="alertbox">
+    <div class="abt" data-i18n="ciIdT">🚨 [필수] 체크인 시 신분증을 꼭 준비해 주세요!</div>
+    <p data-i18n="ciIdD">안전한 투숙을 위해 키오스크에서 <b>본인 인증</b>을 진행합니다. 아래 중 하나를 꼭 지참해 주세요.</p>
+    <ul class="idlist">
+      <li><span class="ic">✔</span><span data-i18n="ciId1"><b>실물 신분증</b> — 주민등록증, 운전면허증, 여권</span></li>
+      <li><span class="ic">✔</span><span data-i18n="ciId2"><b>모바일 신분증</b> — 모바일 신분증 앱(행정안전부), 토스, 네이버, 카카오뱅크, 삼성월렛, NH뱅킹, KB스타뱅킹</span></li>
+    </ul>
+    <div class="nopass" data-i18n="ciNoPass">🛑 PASS 앱은 인증이 불가합니다. 위 수단 중 하나를 꼭 준비해 주세요.</div>
+  </div>
+
+  <div class="card">
+    <div class="sech" data-i18n="ciStepT">🚪 셀프 체크인 방법</div>
+    <ol class="steps">
+      <li data-i18n="ciStep1">키오스크에서 <b>[예약 체크인]</b>을 터치해 주세요.</li>
+      <li data-i18n="ciStep2"><b>예약 번호</b> 또는 <b>예약자명</b>을 입력해 예약을 조회합니다.</li>
+      <li data-i18n="ciStep3">안내에 따라 준비하신 신분증으로 <b>인증</b>한 뒤 <b>카드키를 수령</b>하시면 완료!</li>
+    </ol>
+  </div>
+
+  <div class="photos" id="photos"></div>
+
+  <div class="keybox">
+    <div class="kbt" data-i18n="ciKeyT">🔑 체크아웃 시 객실키를 꼭 반납해 주세요</div>
+    <p data-i18n="ciKeyD">퇴실하실 때는 키오스크에서 <b>[퇴실] 버튼</b>을 누르신 뒤, <b>객실키를 키오스크에 반납</b>해 주세요. 반납이 되지 않으면 퇴실 처리가 완료되지 않습니다.</p>
+  </div>
+
+  <a class="btn callbtn" href="#" style="display:none" data-i18n="callBtn">📞 문의사항은 여기로 전화</a>
+  <a class="kakao" href="http://pf.kakao.com/_UxeKxin/chat" target="_blank" rel="noopener" style="margin-top:10px" data-i18n="kakao">💬 카카오톡으로 문의하기</a>
+  <a class="btn btn-primary" href="index.html" style="margin-top:10px" data-i18n="home">← 처음으로</a>
+  <footer id="footer">Copyright &copy; 2026 홈스테드 스테이 All rights reserved.</footer>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="app.js?v=4"></script>
+<script src="i18n.js?v=4"></script>
+<script>
+  loadConfig(function(c){
+    var box=document.getElementById('photos');
+    [c.checkinUrl, c.checkinUrl2].forEach(function(u){
+      if(!u || String(u).indexOf('http')!==0) return;
+      var im=document.createElement('img'); im.src=u; im.alt='셀프 체크인 안내'; box.appendChild(im);
+    });
+  });
+</script>
+</body>
+</html>
