@@ -88,7 +88,9 @@ function loadConfig(cb) {
     var lg = document.querySelector('img.logo');
     if (lg && CFG.logoUrl && CFG.logoUrl.indexOf('http') === 0) { lg.src = CFG.logoUrl; lg.style.display = 'block'; }
     document.querySelectorAll('.callbtn').forEach(function (b) {
-      if (CFG.phoneContact && CFG.phoneContact.length >= 8) { b.href = 'tel:' + CFG.phoneContact; b.style.display = 'flex'; }
+      // 손님 안내 전화는 대표 개인번호가 아니라 설정의 '안내전화번호'로
+      var tel = CFG.phoneDisplay || CFG.phoneContact || '';
+      if (tel.length >= 8) { b.href = 'tel:' + tel; b.style.display = 'flex'; }
     });
     var f = document.getElementById('footer');
     if (f && CFG.placeName) {
