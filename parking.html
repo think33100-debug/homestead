@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>주차 등록 · 홈스테드 스테이</title>
-<link rel="stylesheet" href="app.css?v=4">
+<link rel="stylesheet" href="app.css?v=5">
 <style>
   .lot{display:flex; gap:6px; margin:14px 0 4px}
   .lot .s{flex:1; text-align:center; padding:10px 4px; border:1px solid var(--line); border-radius:9px; font-size:12px; font-weight:700; background:#fdfcfa; color:var(--ink-soft)}
@@ -65,7 +65,7 @@
 
   <div class="card">
     <div id="editBanner" style="display:none; background:#fdf3e2; border:1px solid #f0dcba; color:#7a5410; border-radius:11px; padding:11px 14px; font-size:13px; font-weight:700; margin-bottom:14px">✏️ 수정 모드입니다. 내용을 바꾼 뒤 아래 버튼을 눌러주세요. <span id="editCancel" style="color:var(--pine); text-decoration:underline; cursor:pointer">취소</span></div>
-    <div class="field"><label for="checkin">체크인 날짜</label><input type="date" id="checkin"></div>
+    <div class="field"><label for="checkin" data-i18n="ciDate">체크인 날짜를 다시 한 번 확인해 주세요</label><input type="date" id="checkin"></div>
     <div class="field"><label for="room">예약 객실</label>
       <div class="selwrap"><select id="room"><option value="">선택해주세요</option></select></div></div>
     <div class="field"><label for="plate">차량 번호</label><input type="text" id="plate" placeholder="예) 12가3456" autocomplete="off"></div>
@@ -135,27 +135,15 @@
 </div>
 
 <div class="toast" id="toast"></div>
-<script src="app.js?v=4"></script>
+<script src="app.js?v=5"></script>
 <script>
   var editMode=false, editOrigPlate='';
   document.getElementById('checkin').value = todayISO();
   document.getElementById('viewDate').value = todayISO();
+  markCheckinField('checkin');
 
-  // 시간 드롭다운 (30분 단위)
-  (function(){
-    ['enter','exit'].forEach(function(id){
-      var el=document.getElementById(id);
-      for(var h=0; h<24; h++){
-        for(var m=0; m<60; m+=30){
-          var v=('0'+h).slice(-2)+':'+('0'+m).slice(-2);
-          var ap=h<12?'오전':'오후', h12=h%12; if(h12===0) h12=12;
-          var o=document.createElement('option');
-          o.value=v; o.textContent=ap+' '+h12+':'+('0'+m).slice(-2);
-          el.appendChild(o);
-        }
-      }
-    });
-  })();
+  fillTimes('enter', 0, 23);
+  fillTimes('exit', 0, 23);
 
   loadConfig(function(c){
     if(c.placeName) document.getElementById('title').textContent = c.placeName + ' 주차등록';

@@ -16,6 +16,9 @@ header p.lead{margin:0; color:var(--ink-soft); font-size:14px; line-height:1.6}
 .card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:22px 20px; margin-bottom:16px}
 label{display:block; font-size:13px; font-weight:700; margin:0 0 7px; color:var(--ink)}
 .field{margin-bottom:16px}
+.field.hl{background:#fff4e6; border:2px solid #b5710f; border-radius:13px; padding:13px 14px 14px; margin-bottom:18px}
+.field.hl label{color:#7a5410; font-weight:800; font-size:13.5px; word-break:keep-all; line-height:1.45}
+.field.hl input,.field.hl select{border-color:#d9b877; background:#fff; font-weight:700}
 input,select,textarea{width:100%; padding:13px 14px; font-size:16px; font-family:inherit; border:1px solid var(--line); border-radius:11px; background:#fdfcfa; color:var(--ink); appearance:none; -webkit-appearance:none}
 textarea{min-height:88px; resize:vertical; line-height:1.5}
 input:focus,select:focus,textarea:focus{outline:none; border-color:var(--pine); box-shadow:0 0 0 3px rgba(31,67,55,.12)}

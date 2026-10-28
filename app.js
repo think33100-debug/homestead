@@ -50,6 +50,37 @@ function fillSelect(id, list) {
   });
 }
 
+// 시간 선택 드롭다운 채우기 (30분 단위)
+// fillTimes('arrive', 8, 23) → 오전 8:00 ~ 오후 11:30
+function fillTimes(id, startHour, endHour, stepMin) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  var sh = (startHour === undefined) ? 0 : startHour;
+  var eh = (endHour === undefined) ? 23 : endHour;
+  var st = stepMin || 30;
+  for (var h = sh; h <= eh; h++) {
+    for (var m = 0; m < 60; m += st) {
+      var v = ('0' + h).slice(-2) + ':' + ('0' + m).slice(-2);
+      var ap = h < 12 ? '오전' : '오후', h12 = h % 12; if (h12 === 0) h12 = 12;
+      var o = document.createElement('option');
+      o.value = v; o.textContent = ap + ' ' + h12 + ':' + ('0' + m).slice(-2);
+      el.appendChild(o);
+    }
+  }
+}
+
+// 체크인 날짜 칸 강조 (손님이 날짜를 자주 헷갈려서)
+function markCheckinField(id, labelText) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  var f = el.closest ? el.closest('.field') : null;
+  if (f) f.className = f.className + ' hl';
+  if (labelText) {
+    var lb = f ? f.querySelector('label') : null;
+    if (lb) lb.textContent = labelText;
+  }
+}
+
 // 공통 설정 로드 (로고 / 전화 / 객실 목록 등)
 function loadConfig(cb) {
   api('config').then(function (c) {
