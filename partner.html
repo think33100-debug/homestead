@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>협업 제안 · 홈스테드 스테이</title>
+<link rel="stylesheet" href="app.css?v=9">
+<style>
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:2px}
+  .chip{flex:1 1 calc(50% - 8px); min-width:140px; display:flex; align-items:center; gap:8px;
+    border:1.5px solid var(--line); border-radius:12px; padding:12px 13px; font-size:13.5px; font-weight:700;
+    background:#fdfcfa; color:var(--ink); cursor:pointer; word-break:keep-all; line-height:1.35}
+  .chip input{width:auto; margin:0; appearance:auto; -webkit-appearance:auto; flex:none}
+  .chip.on{border-color:var(--pine); background:#eef5f1; color:var(--pine)}
+  .intro{background:#eef5f1; border:1.5px solid var(--pine); border-radius:16px; padding:18px 20px; margin-bottom:16px}
+  .intro .it{font-size:16px; font-weight:800; color:var(--pine); margin-bottom:8px}
+  .intro p{margin:0; font-size:13.5px; color:var(--ink); line-height:1.65; word-break:keep-all}
+</style>
+</head>
+<body>
+<a class="homefab" href="index.html" aria-label="홈으로">🏠</a>
+<div class="wrap">
+  <div id="langBar"></div>
+  <header>
+    <img class="logo" alt="홈스테드 스테이">
+    <div class="eyebrow">PARTNERSHIP</div>
+    <h1 id="title" data-i18n="pnTitle">홈스테드와 협업 제안하기</h1>
+    <p class="tagline">Together we are home</p>
+  </header>
+
+  <div class="intro">
+    <div class="it" data-i18n="pnIntroT">함께 만들어갈 분을 찾습니다</div>
+    <p data-i18n="pnIntroD">기업 출장 숙소, 굿즈 · 어메니티 입점, 조식 제휴 등 어떤 형태의 제안도 환영합니다. 남겨주시면 대표가 직접 확인하고 연락드리겠습니다.</p>
+  </div>
+
+  <div class="card" id="form">
+    <div class="field">
+      <label data-i18n="pnType">제안 유형 <span style="font-weight:400; color:var(--ink-soft)">(복수 선택 가능)</span></label>
+      <div class="chips" id="chips">
+        <label class="chip"><input type="checkbox" value="회사 출장지 장기 예약 할인"><span data-i18n="pnT1">회사 출장지 장기 예약 할인</span></label>
+        <label class="chip"><input type="checkbox" value="굿즈 협업"><span data-i18n="pnT2">굿즈 협업</span></label>
+        <label class="chip"><input type="checkbox" value="어메니티 협업"><span data-i18n="pnT3">어메니티 협업</span></label>
+        <label class="chip"><input type="checkbox" value="조식 협업"><span data-i18n="pnT4">조식 협업</span></label>
+        <label class="chip"><input type="checkbox" value="기타 제휴"><span data-i18n="pnT5">기타 제휴</span></label>
+      </div>
+    </div>
+    <div class="field"><label for="pnCompany" data-i18n="pnCompany">회사 · 브랜드명</label><input type="text" id="pnCompany" placeholder="예) 홈스테드컴퍼니" autocomplete="off"></div>
+    <div class="field"><label for="pnName" data-i18n="pnName">담당자 성함</label><input type="text" id="pnName" placeholder="성함" autocomplete="off"></div>
+    <div class="field"><label for="pnPhone" data-i18n="pnPhone">연락처</label><input type="tel" id="pnPhone" placeholder="010-0000-0000" inputmode="numeric"></div>
+    <div class="field"><label for="pnEmail" data-i18n="pnEmail">이메일 <span style="font-weight:400; color:var(--ink-soft)">(선택)</span></label><input type="email" id="pnEmail" placeholder="name@company.com" autocomplete="off"></div>
+    <div class="field" style="margin-bottom:20px"><label for="pnMsg" data-i18n="pnMsg">제안 내용</label>
+      <textarea id="pnMsg" data-i18n-ph="pnMsgPh" placeholder="예) 월 10박 이상 출장 숙소로 이용하고 싶습니다. 장기 할인 가능할까요?"></textarea></div>
+    <button class="btn btn-primary" id="pnBtn" data-i18n="pnSend">제안 보내기</button>
+    <p style="font-size:11.5px; color:var(--ink-soft); margin:12px 0 0; line-height:1.5" data-i18n="pnNote">※ 남겨주신 정보는 제휴 검토 및 회신 목적으로만 사용됩니다.</p>
+  </div>
+
+  <div class="card done" id="pnDone" style="display:none">
+    <div class="check">✓</div>
+    <h2 data-i18n="pnDoneT">제안이 전달되었습니다</h2>
+    <p data-i18n="pnDoneD">소중한 제안 감사합니다. 내용 확인 후 남겨주신 연락처로 회신드리겠습니다 :)</p>
+  </div>
+
+  <a class="kakao" href="http://pf.kakao.com/_UxeKxin/chat" target="_blank" rel="noopener" style="margin-top:6px" data-i18n="kakao">💬 카카오톡으로 문의하기</a>
+  <a class="btn btn-primary" href="index.html" style="margin-top:10px" data-i18n="home">← 처음으로</a>
+  <footer id="footer">Copyright &copy; 2026 홈스테드 스테이 All rights reserved.</footer>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="app.js?v=9"></script>
+<script src="i18n.js?v=9"></script>
+<script>
+  loadConfig(function(c){});
+
+  document.querySelectorAll('#chips .chip').forEach(function(el){
+    var cb = el.querySelector('input');
+    cb.addEventListener('change', function(){ el.className = 'chip' + (cb.checked ? ' on' : ''); });
+  });
+
+  document.getElementById('pnBtn').addEventListener('click', function(){
+    var types = [];
+    document.querySelectorAll('#chips input:checked').forEach(function(cb){ types.push(cb.value); });
+    var d = {
+      types: types.join(', '),
+      company: document.getElementById('pnCompany').value.trim(),
+      name: document.getElementById('pnName').value.trim(),
+      phone: document.getElementById('pnPhone').value,
+      email: document.getElementById('pnEmail').value.trim(),
+      message: document.getElementById('pnMsg').value.trim()
+    };
+    if(!types.length){ toast('제안 유형을 하나 이상 선택해 주세요.'); return; }
+    if(!d.company){ toast('회사 · 브랜드명을 입력해 주세요.'); return; }
+    if(!d.name){ toast('담당자 성함을 입력해 주세요.'); return; }
+    if(d.phone.replace(/[^0-9]/g,'').length < 9){ toast('연락처를 정확히 입력해 주세요.'); return; }
+    if(d.message.length < 5){ toast('제안 내용을 조금 더 적어주세요.'); return; }
+
+    var b=this; b.disabled=true; b.textContent='보내는 중...';
+    api('requestPartnership', d).then(function(res){
+      b.disabled=false; b.textContent='제안 보내기';
+      if(res && res.ok){
+        document.getElementById('form').style.display='none';
+        document.getElementById('pnDone').style.display='block';
+        window.scrollTo({top:0, behavior:'smooth'});
+      } else { toast((res&&res.msg)||'전송에 실패했어요.'); }
+    }).catch(function(){ b.disabled=false; b.textContent='제안 보내기'; toast('통신 오류가 발생했어요.'); });
+  });
+</script>
+</body>
+</html>

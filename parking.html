@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>주차 등록 · 홈스테드 스테이</title>
-<link rel="stylesheet" href="app.css?v=5">
+<link rel="stylesheet" href="app.css?v=9">
 <style>
   .lot{display:flex; gap:6px; margin:14px 0 4px}
   .lot .s{flex:1; text-align:center; padding:10px 4px; border:1px solid var(--line); border-radius:9px; font-size:12px; font-weight:700; background:#fdfcfa; color:var(--ink-soft)}
@@ -29,6 +29,7 @@
 </style>
 </head>
 <body>
+<a class="homefab" href="index.html" aria-label="홈으로">🏠</a>
 <div class="wrap">
   <header>
     <img class="logo" alt="홈스테드 스테이">
@@ -45,14 +46,15 @@
   </div>
 
   <div class="guide">
-    <p><span class="gi">🚗</span><span>주차장은 좌우 빈틈 없는 <b>일렬 이중주차</b> 구조로, 중간 출차가 어렵습니다.</span></p>
+    <p><span class="gi">🅿️</span><span><b>주차 자리는 따로 지정해 드리지 않습니다.</b> 이중주차라 <b>도착하신 순서대로</b> 주차해 주시면 됩니다. 먼저 오신 분이 <b>가장 안쪽(건물 쪽)</b>으로 들어가 주세요.</span></p>
+    <p><span class="gi">🚗</span><span><b>차 머리가 숙소를 향하도록</b> 들어와 주세요.</span></p>
     <p><span class="gi">📞</span><span>차량에 <b>긴급 연락처를 꼭 부착</b>해 주세요.</span></p>
   </div>
 
   <div class="lot">
-    <div class="s out">1번<br>먼저 출차</div><div class="s">2번</div><div class="s">3번</div><div class="s">4번<br>건물 쪽</div>
+    <div class="s out">먼저<br>출차</div><div class="s">↑</div><div class="s">↑</div><div class="s">건물 쪽<br>(가장 안쪽)</div>
   </div>
-  <div class="lotcap">← 도로 방향 · 일찍 나가실 분은 1번(바깥)에 주차해 주세요</div>
+  <div class="lotcap">← 도로 방향 · 먼저 오신 분부터 안쪽(건물 쪽)으로 · 일찍 나가실 분은 바깥쪽에 주차해 주세요</div>
 
   <div class="outbox">
     <div class="obt">🚙 외출 예정이시라면 먼저 읽어주세요</div>
@@ -135,7 +137,7 @@
 </div>
 
 <div class="toast" id="toast"></div>
-<script src="app.js?v=5"></script>
+<script src="app.js?v=9"></script>
 <script>
   var editMode=false, editOrigPlate='';
   document.getElementById('checkin').value = todayISO();
