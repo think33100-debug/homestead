@@ -3,6 +3,7 @@
 var I18N = {
   ko: {
     langName:'한국어',
+    lateCold:'<b>지하 냉장고 · 냉동고</b>에도 보관해 드릴 수 있습니다. 원하시면 아래 버튼으로 미리 문의해 주세요.',
     // 셀프 체크인
     ciTitle:'무인 셀프 체크인 안내',
     ciLead:'원활한 체크인을 위해 아래 내용과<br><b>필수 준비물</b>을 꼭 확인해 주세요.',
@@ -73,8 +74,10 @@ var I18N = {
     sampleCap:'📷 이렇게 놓아주시면 됩니다',
     coldT:'🧊 냉장 · 냉동 보관 안내',
     cold1:'<b>냉장 보관이 필요한 물품</b>은 미리 말씀해 주시면, 짐 보관 시 바로 냉장고에 넣어드립니다.',
-    cold2:'<b>냉동 보관</b>은 104호를 제외한 객실에서는 어렵습니다.',
-    cold3:'부피가 큰 물품은 냉장 보관이 어려울 수 있습니다 🥲<br>· 일반 레터링 케이크 크기 → 가능<br>· 성심당 망고시루 케이크 크기 → 어려움',
+    cold2:'<b>냉동 보관</b>은 객실에서는 어렵지만, <b>지하 냉동고</b>를 이용해 보관해 드릴 수 있습니다.',
+    cold3:'부피가 큰 물품은 보관이 어려울 수 있습니다 🥲<br>· 일반 레터링 케이크 크기 → 가능<br>· 성심당 망고시루 케이크 크기 → 어려움',
+    cold4:'<b>냉장 · 냉동 보관을 원하시면 아래 버튼으로 미리 문의해 주세요.</b>',
+    coldBtn:'💬 냉장 · 냉동 보관 문의하기',
     lateTitle:'🧳 퇴실 후 짐 보관 안내', lateSub:'퇴실 후에는 <b>지하 창고</b> 이용이 가능하십니다!',
     lateHow:'<b>이용 방법</b><br>정문 옆 "STAFF ONLY" 흰색 문이 지하로 내려가는 입구예요.',
     lateS1:'누르고 아래로 내려가 주세요',
@@ -100,6 +103,7 @@ var I18N = {
 
   en: {
     langName:'English',
+    lateCold:'We can also keep items in our <b>basement fridge / freezer</b>. Please ask in advance using the button below.',
     // Self check-in
     ciTitle:'Self Check-in Guide',
     ciLead:'For a smooth check-in, please read the following and<br>be sure to bring the <b>required ID</b>.',
@@ -165,7 +169,9 @@ var I18N = {
     sampleCap:'📷 Please place it like this',
     coldT:'🧊 Refrigerated & Frozen Storage',
     cold1:'If you have items that <b>need refrigeration</b>, please let us know in advance and we will put them in the fridge right away.',
-    cold2:'<b>Freezer storage</b> is not available except for Room 104.',
+    cold2:'<b>Freezer storage</b> is not possible in the rooms, but we can store items in our <b>basement freezer</b>.',
+    cold4:'<b>If you need refrigerated or frozen storage, please contact us in advance using the button below.</b>',
+    coldBtn:'💬 Ask about fridge / freezer storage',
     cold3:'Bulky items may not fit in the fridge 🥲<br>· Standard lettering cake size → OK<br>· Extra-large cake (e.g. Sungsimdang Mango Siru) → not possible',
     lateTitle:'🧳 Storage after check-out', lateSub:'You can use the <b>basement storage room</b> after check-out!',
     lateHow:'<b>How to use</b><br>The white "STAFF ONLY" door next to the main entrance leads downstairs.',
@@ -191,6 +197,7 @@ var I18N = {
 
   ja: {
     langName:'日本語',
+    lateCold:'<b>地下の冷蔵庫・冷凍庫</b>でもお預かりできます。ご希望の場合は下のボタンから事前にお問い合わせください。',
     // セルフチェックイン
     ciTitle:'セルフチェックイン案内',
     ciLead:'スムーズなチェックインのため、以下の内容と<br><b>必要なもの</b>を必ずご確認ください。',
@@ -256,7 +263,9 @@ var I18N = {
     sampleCap:'📷 このように置いてください',
     coldT:'🧊 冷蔵・冷凍保管のご案内',
     cold1:'<b>冷蔵保管が必要なお品物</b>は事前にお知らせいただければ、お預かり時にすぐ冷蔵庫へお入れいたします。',
-    cold2:'<b>冷凍保管</b>は104号室を除き承ることができません。',
+    cold2:'<b>冷凍保管</b>は客室では承れませんが、<b>地下の冷凍庫</b>でお預かりできます。',
+    cold4:'<b>冷蔵・冷凍保管をご希望の場合は、下のボタンから事前にお問い合わせください。</b>',
+    coldBtn:'💬 冷蔵・冷凍保管のお問い合わせ',
     cold3:'かさばるお品物は冷蔵保管が難しい場合がございます 🥲<br>· 一般的なレタリングケーキのサイズ → 可能<br>· 特大サイズのケーキ（聖心堂マンゴーシルなど）→ 不可',
     lateTitle:'🧳 チェックアウト後の荷物預かり', lateSub:'チェックアウト後は<b>地下倉庫</b>をご利用いただけます！',
     lateHow:'<b>ご利用方法</b><br>正面玄関横の「STAFF ONLY」と書かれた白い扉が地下への入口です。',
@@ -282,6 +291,7 @@ var I18N = {
 
   zh: {
     langName:'简体中文',
+    lateCold:'也可使用<b>地下冷藏柜 / 冷冻柜</b>为您保管。如有需要请通过下方按钮提前咨询。',
     // 自助入住
     ciTitle:'自助入住指南',
     ciLead:'为了顺利办理入住，请务必阅读以下内容并<br>携带<b>必备证件</b>。',
@@ -347,7 +357,9 @@ var I18N = {
     sampleCap:'📷 请像这样放置',
     coldT:'🧊 冷藏 · 冷冻寄存说明',
     cold1:'如有<b>需要冷藏</b>的物品，请提前告知，我们会在寄存时立即放入冰箱。',
-    cold2:'<b>冷冻寄存</b>除104号房外无法提供。',
+    cold2:'<b>冷冻寄存</b>客房内无法提供，但可使用<b>地下冷冻柜</b>为您保管。',
+    cold4:'<b>如需冷藏或冷冻寄存，请通过下方按钮提前咨询。</b>',
+    coldBtn:'💬 咨询冷藏 / 冷冻寄存',
     cold3:'体积较大的物品可能无法放入冰箱 🥲<br>· 普通字牌蛋糕大小 → 可以<br>· 超大尺寸蛋糕（如圣心堂芒果蛋糕）→ 无法提供',
     lateTitle:'🧳 退房后行李寄存', lateSub:'退房后可使用<b>地下储物间</b>！',
     lateHow:'<b>使用方法</b><br>正门旁标有「STAFF ONLY」的白色门是通往地下的入口。',
