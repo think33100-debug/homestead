@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>주차 등록 · 홈스테드 스테이</title>
-<link rel="stylesheet" href="app.css?v=9">
+<link rel="stylesheet" href="app.css?v=15">
 <style>
   .lot{display:flex; gap:6px; margin:14px 0 4px}
   .lot .s{flex:1; text-align:center; padding:10px 4px; border:1px solid var(--line); border-radius:9px; font-size:12px; font-weight:700; background:#fdfcfa; color:var(--ink-soft)}
@@ -55,6 +55,13 @@
     <div class="s out">먼저<br>출차</div><div class="s">↑</div><div class="s">↑</div><div class="s">건물 쪽<br>(가장 안쪽)</div>
   </div>
   <div class="lotcap">← 도로 방향 · 먼저 오신 분부터 안쪽(건물 쪽)으로 · 일찍 나가실 분은 바깥쪽에 주차해 주세요</div>
+
+  <div class="nextbox" style="display:block">
+    <div class="nbt">🅿️ 유료 주차장 이용을 원하시나요?</div>
+    <p>주차 자리가 모두 찼거나 외출이 잦으시다면 <b>동대구역3유료주차장</b>을 이용해 주세요.<br>
+    <b>24시간 9,900원</b> · 리뷰를 남겨주시면 <b>5,000원을 돌려드립니다.</b></p>
+    <a class="btn btn-primary" href="payback.html">🎉 주차장 리뷰 이벤트 자세히 보기 →</a>
+  </div>
 
   <div class="outbox">
     <div class="obt">🚙 외출 예정이시라면 먼저 읽어주세요</div>
@@ -137,7 +144,7 @@
 </div>
 
 <div class="toast" id="toast"></div>
-<script src="app.js?v=9"></script>
+<script src="app.js?v=15"></script>
 <script>
   var editMode=false, editOrigPlate='';
   document.getElementById('checkin').value = todayISO();
